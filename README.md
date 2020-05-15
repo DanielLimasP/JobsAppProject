@@ -11,9 +11,20 @@ Proyecto para la matería de Desarrollo de aplicaciones Híbridas - Ing. Alonso 
 
 ## Installation
 
+Clone the repo, navigate to the folder, run 
 
+```bash
+npm install
+```
+For Android run:
+```bash
+npx react-native run-android
+```
+For IOS run:
+```bash
+npx react-native run-ios
+```
 
 # TODO
 
-* Add installation steps
 * Everything else...
