@@ -2,6 +2,8 @@
 Pendiente importar imagen, no funciona componente ImgJob
 import ImgJob from './ImgJob'
 <ImgJob/>
+
+flex:1
 */
 
 import React from 'react';
@@ -16,14 +18,14 @@ import {
 export default (props)=>{
     return(
         <View style={styles.container}>
-            <Text style={styles.welcome}>Bienvenido a JaleJale</Text>
-            <Text style={styles.jale}>¡La plataforma para hacer jalesitos sencillos!</Text>
+            <Text style={styles.textWelcome}>Bienvenido a JaleJale</Text>
+            <Text style={styles.textJale}>¡La plataforma para hacer jalesitos sencillos!</Text>
         
-            <TouchableHighlight style={styles.buttonStyle1}>
+            <TouchableHighlight style={styles.buttonIniciar}>
                 <Text style={styles.textButton}>INICIAR SESIÓN</Text>
             </TouchableHighlight>
 
-            <TouchableHighlight style={styles.buttonStyle2}>
+            <TouchableHighlight style={styles.buttonRegistro}>
                 <Text style={styles.textButton}>REGISTRO</Text>
             </TouchableHighlight>
         </View>
@@ -36,7 +38,7 @@ const styles = StyleSheet.create({
       alignItems:'center',
       margin:10,
     },    
-    buttonStyle1:{
+    buttonIniciar:{
         flexDirection: 'column',
         justifyContent: 'space-around',
         alignItems:'center',
@@ -49,7 +51,7 @@ const styles = StyleSheet.create({
         width:350,
         height:40,
     },
-    buttonStyle2:{
+    buttonRegistro:{
         flexDirection: 'column',
         justifyContent: 'space-around',
         alignItems:'center',
@@ -65,14 +67,13 @@ const styles = StyleSheet.create({
     textButton:{
         color:'white',
         fontSize: 20,
-        fontFamily:''
     },
-    welcome:{
+    textWelcome:{
         fontSize:50,
         textAlign:'center',
         margin:10,
     },
-    jale:{
+    textJale:{
         fontSize:15,
         textAlign:'center',
         margin:10,
