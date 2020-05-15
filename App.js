@@ -8,12 +8,13 @@ import {
 
 import LoginView from './screens/LoginViewScreen'
 import SignIn from './components/SignIn'
+import SignUp from './components/SignUp'
 
 export default class App extends Component<>{
   render(){
     return(
       <View>
-        <SignIn/>
+        <SignUp/>
       </View>
     )
   }
