@@ -1,5 +1,4 @@
-/*Pendiente botón flotante y mapa
-Iconos*/
+/*Pendiente iconos*/
 
 import React, { Component } from 'react'
 import { View,Text,TextInput,TouchableHighlight,StyleSheet } from 'react-native'
@@ -8,27 +7,36 @@ export default class Map extends Component {
   render() {
     return (
       <View style={styles.container}>
+        <View style={styles.container2}>
         <TouchableHighlight style={styles.btnProfile}>
                 <Text style={styles.textButton}>C</Text>
          </TouchableHighlight>
-
-         <TextInput style={styles.textInput} placeholder="Búsquedad"></TextInput>
-
          <TouchableHighlight style={styles.btnNot}>
                 <Text style={styles.textButton}>N</Text>
         </TouchableHighlight>
+        </View>
+
+        <Text style={styles.texto}>Publicar Trabajo</Text>
+
+        <TextInput style={styles.textInput} placeholder="Descripción"></TextInput>
+        <TextInput style={styles.textInput} placeholder="Pago $$$"></TextInput>
+        <TextInput style={styles.textInput} placeholder="Ubicación"></TextInput>
+
+        <Text style={styles.texto}>Mis publicaciones</Text>
       </View>
     )
   }
 }
 
 const styles = StyleSheet.create({
-    container: {
+    container:{
       margin:10,
-      alignItems:'center',
+      flexDirection:'column',
+    },
+    container2: {
       flexDirection:'row',
-      justifyContent: 'space-between'
-    },    
+      justifyContent: 'space-between',
+    },   
     btnProfile:{
         justifyContent: 'space-around',
         alignItems:'center',
@@ -58,11 +66,17 @@ const styles = StyleSheet.create({
         fontSize: 20,
     },
     textInput:{
-        width:250,
+        width:350,
         height:45,
         borderColor: 'gray',
         borderWidth: 1,
         margin:10,
         fontSize:20,
+    },
+    texto:{
+        fontSize:20,
+        textAlign:'left',
+        margin:10,
+        color:'#273A5E',
     },
   });
