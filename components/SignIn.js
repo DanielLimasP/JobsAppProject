@@ -1,7 +1,5 @@
 /*Pendiente inicio con cuenta Google
-flex:1
-Seguridad en textInput Contraseña
-Tipo de campo (correo)
+Tipo de campo (correo y contraseña)
 */
 
 import React, { Component } from 'react'
@@ -12,17 +10,12 @@ export default class SignIn extends Component {
     return (
       <View style={styles.container}>
             <Text style={styles.textInicio}>INICIO DE SESIÓN</Text>
-            <Text style={styles.texto}>CORREO ELECTRÓNICO:</Text>
            
-            <View style={styles.container2}>
-                <TextInput style={styles.textInput}></TextInput>
-            </View>  
+            <TextInput style={styles.textInput} placeholder="Correo electrónico"></TextInput>
 
-            <Text style={styles.texto}>CONTRASEÑA:</Text>
+            <TextInput style={styles.textInput} placeholder="Contraseña"></TextInput>
 
             <View style={styles.container2}>
-                <TextInput style={styles.textInput}></TextInput>
-
                 <TouchableHighlight style={styles.buttonContinuar}>
                     <Text style={styles.textButton}>CONTINUAR</Text>
                 </TouchableHighlight>
@@ -38,8 +31,10 @@ export default class SignIn extends Component {
 
 const styles = StyleSheet.create({
     container: {
-      justifyContent: 'center',
+      justifyContent: 'flex-start',
       margin:10,
+      flex:1,
+      alignItems:'stretch'
     },
     container2: {
         alignItems: 'center',
@@ -81,17 +76,11 @@ const styles = StyleSheet.create({
         color:'#51AADF',
     },
     textInput:{
-        width:300,
-        height:40,
+        width:350,
+        height:45,
         borderColor: 'gray',
         borderWidth: 1,
         margin:10,
         fontSize: 20,
-    },
-    texto:{
-        fontSize:20,
-        textAlign:'left',
-        margin:10,
-        fontWeight: '700',
     },
   });

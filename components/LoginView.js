@@ -10,7 +10,6 @@ import React from 'react';
 import {
     View,
     Text,
-    Button,
     StyleSheet,
     TouchableHighlight
 } from 'react-native'
