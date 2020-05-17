@@ -1,11 +1,8 @@
-import React, {
-  Component
-}  from 'react';
+import React from 'react';
+import AppNavigation from './src/navigation/AppNavigation';
 
-import {
-  View
-} from 'react-native';
 
+<<<<<<< HEAD
 import LoginView from './screens/LoginViewScreen'
 import SignIn from './components/SignIn'
 import SignUp from './components/SignUp'
@@ -20,6 +17,10 @@ export default class App extends Component<>{
       </View>
     )
   }
+=======
+function App(){
+  return <AppNavigation/>
+>>>>>>> feature
 }
 
-
+export default App;
