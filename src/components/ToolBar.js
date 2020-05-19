@@ -9,7 +9,7 @@ import color from '../styles/colors'
 
 export default function ToolBar(props){
     return(
-        <View style={[props.style, { height: 64, marginTop: 35, backgroundColor: color.PRIMARYCOLOR}]}>
+        <View style={[props.style, { height: 64, marginTop: 30,  backgroundColor: color.PRIMARYCOLOR}]}>
             {props.titulo &&
                 <Text style={{fontFamily: 'roboto-regular', marginTop: 12, textAlign: "center", fontSize: 25, color: color.WHITE}}>
                     {props.titulo}

@@ -4,7 +4,8 @@ RadioButton, eliminar texto para control "selected"
 */
 
 import React, { useState } from 'react'
-import { View,
+import {
+    View,
     Text,
     TextInput,
     TouchableOpacity,
@@ -12,30 +13,28 @@ import { View,
     StatusBar
 } from 'react-native'
 import {
-    CheckBox, 
+    CheckBox,
     SocialIcon
 } from 'react-native-elements'
 import RadioButton from '../components/RadioButton';
 import MyTextInput from '../components/MyTextInput';
 import ToolBar from '../components/ToolBar';
 import color from '../styles/colors';
-import {mainStyles, signUp} from '../styles/styles';
+import { mainStyles, signUp } from '../styles/styles';
+import MyButton from '../components/MyButton'
+
 
 
 const PROP = [
-	{
-		key: 'hombre',
-		text: 'Hombre',
-	},
-	{
-		key: 'mujer',
-		text: 'Mujer',
-	},
+    {
+        key: 'hombre',
+        text: 'Hombre',
+    },
+    {
+        key: 'mujer',
+        text: 'Mujer',
+    },
 ];
-
-function goToScreen(props, routeName){
-    props.navigation.navigate(routeName)
-  }
 
 export default function SignUp(props) {
 
@@ -45,64 +44,67 @@ export default function SignUp(props) {
         <ScrollView
             keyboardDismissMode='on-drag'
             keyboardShouldPersistTaps='always'
-            style={{backgroundColor: color.WHITE}}>
-        <StatusBar backgroundColor={color.PRIMARYCOLOR} translucent ={true}/>
-        <ToolBar titulo='Registro'
-            onPressLeft={()=> goToScreen(props,'Login')} 
-            iconLeft={require('../assets/images/back.png')}/>
-        <View style={mainStyles.container}>
-            <Text style={mainStyles.titleText}>Crea tu cuenta</Text>
+            style={{ backgroundColor: color.WHITE }}>
+            <StatusBar backgroundColor={color.PRIMARYCOLOR} translucent={true} />
+            <ToolBar titulo='Registro'
+                onPressLeft={() => goToScreen(props, 'Login')}
+                iconLeft={require('../assets/images/back.png')} />
+            <View style={mainStyles.container}>
+                <Text style={mainStyles.titleText}>Crea tu cuenta</Text>
 
-            <MyTextInput placeholder="Nombre" image='user'/>
-            <MyTextInput placeholder="Apellido Paterno" image='user'/>
-            <MyTextInput placeholder="Apellido Materno" image='user'/>
-            <MyTextInput placeholder="Correo" keyboardType='email-address' image='envelope'/>
-            <MyTextInput placeholder="Contraseña" keyboardType={null}
-                 image='lock'  secureTextEntry={hidePassword}
+                <MyTextInput placeholder="Nombre" image='user' />
+                <MyTextInput placeholder="Apellido Paterno" image='user' />
+                <MyTextInput placeholder="Apellido Materno" image='user' />
+                <MyTextInput placeholder="Correo" keyboardType='email-address' image='envelope' />
+                <MyTextInput placeholder="Contraseña" keyboardType={null}
+                    image='lock' secureTextEntry={hidePassword}
                 />
-            <MyTextInput placeholder="Confirmar contraseña" keyboardType={null}
-                onPress={() => setHidePassword(!hidePassword)} image='lock' bolGone={true} secureTextEntry={hidePassword}
+                <MyTextInput placeholder="Confirmar contraseña" keyboardType={null}
+                    onPress={() => setHidePassword(!hidePassword)} image='lock' bolGone={true} secureTextEntry={hidePassword}
                 />
-    
-            <Text style={signUp.texto}>SEXO:</Text>
-            <View style={signUp.container3}>
-                <RadioButton PROP={PROP} />
-            </View>
-            <Text style={signUp.texto}>FECHA DE NACIMIENTO:</Text>
 
-            <View style={signUp.container3}>
-                <TextInput style={signUp.txtDate} placeholder="DD"></TextInput>
-                <TextInput style={signUp.txtDate} placeholder="MM"></TextInput>
-                <TextInput style={signUp.txtDate} placeholder="AAAA"></TextInput>
-            </View> 
+                <Text style={signUp.textoS}>SEXO:</Text>
+                <View style={signUp.container3}>
+                    <RadioButton PROP={PROP} />
+                </View>
+                <Text style={signUp.texto}>FECHA DE NACIMIENTO:</Text>
 
-            <CheckBox 
-                containerStyle={signUp.checkbox}
-                textStyle={{color: color.PRIMARYCOLOR}}
-                title='He leido y acepto los términos y condiciones'
-                checked= {false}
-                checkedColor={color.SECONDARYCOLOR}/>
-            <View style={mainStyles.btnMain}> 
-                <TouchableOpacity onPress={()=> goToScreen(props, 'Login')}>
-                    <Text style={[mainStyles.btntxt]}>Continuar</Text>
-                </TouchableOpacity>
+                <View style={signUp.container3}>
+                    <TextInput style={signUp.txtDate} placeholder="DD"></TextInput>
+                    <TextInput style={signUp.txtDate} placeholder="MM"></TextInput>
+                    <TextInput style={signUp.txtDate} placeholder="AAAA"></TextInput>
+                </View>
+
+                <CheckBox
+                    containerStyle={signUp.checkbox}
+                    textStyle={{ color: color.PRIMARYCOLOR }}
+                    title='He leido y acepto los términos y condiciones'
+                    checked={false}
+                    checkedColor={color.SECONDARYCOLOR} />
+                <MyButton
+                    titulo='Continuar'
+                    onPress={() => goToScreen('Login')}
+                />
+                <View >
+                    <TouchableOpacity onPress={() => goToScreen(props, 'Login')}>
+                        <Text style={mainStyles.txtSecond}>¿Ya tienes una cuenta?</Text>
+                    </TouchableOpacity>
+                </View>
+                <View style={signUp.containerSocial}>
+                    <SocialIcon
+                        style={signUp.buttonSocialIcon}
+                        title='Iniciar con Google'
+                        button
+                        type='google-plus-official' />
+                </View>
+
             </View>
-            <View >
-                <TouchableOpacity onPress={()=> goToScreen(props, 'Login')}>
-                    <Text style={mainStyles.txtSecond}>¿Ya tienes una cuenta?</Text>
-                </TouchableOpacity>
-            </View>
-            <View style={signUp.containerSocial}>
-                <SocialIcon 
-                    style={signUp.buttonSocialIcon}
-                    title='Iniciar con Google'
-                    button
-                    type='google-plus-official'/>            
-            </View>
-            
-      </View>
-      </ScrollView>
+        </ScrollView>
     )
-  
+
+    function goToScreen(routeName) {
+        props.navigation.navigate(routeName)
+    }
+
 }
 

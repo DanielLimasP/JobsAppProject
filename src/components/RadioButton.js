@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {View, TouchableOpacity, Text, StyleSheet} from 'react-native';
+import color from "../styles/colors";
 
 export default class RadioButton extends Component {
   state = {
@@ -36,15 +37,15 @@ export default class RadioButton extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    marginBottom: 35,
+    marginBottom: 5,
     alignItems: 'center',
     flexDirection: 'row',
     justifyContent: 'space-between',
   },
   radioText: {
     marginRight: 35,
-    fontSize: 20,
-    color: 'black',
+    fontSize: 18,
+    color: color.PRIMARYCOLOR
   },
   radioCircle: {
     height: 20,

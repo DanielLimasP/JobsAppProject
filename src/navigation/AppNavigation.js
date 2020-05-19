@@ -19,7 +19,7 @@ const AppNavigation = createStackNavigator({
             headerShown: false,
         }
     },
-    Main: {
+    MainScreen: {
         screen: MainScreen,
         navigationOptions:{
             headerShown: false
