@@ -24,10 +24,10 @@ export default function RecoverPassword(props){
             style={{backgroundColor: color.WHITE}}>
         <StatusBar backgroundColor={color.PRIMARYCOLOR} translucent ={true}/>
         <ToolBar titulo='Contraseña'
-          onPressLeft={()=> goToScreen(props,'Login')} 
-          iconLeft={require('../assets/images/back.png')}/>
+            onPressLeft={()=> goToScreen(props,'Login')} 
+            iconLeft={require('../assets/images/back.png')}/>
         <View style={{padding: 30}, mainStyles.container}>
-          <Text style={ mainStyles.titleText}>{'\n'}Recuperar{'\n'}Contraseña</Text>
+          <Text style={ mainStyles.titleText}>{'\n'}Recuperar{'\n'}contraseña</Text>
           <MyTextInput keyboardType='email-address' placeholder='Email' image='user'/>
           <View style={mainStyles.btnMain}> 
             <TouchableOpacity onPress={()=> goToScreen(props, 'Login')}>

@@ -21,9 +21,11 @@ export default function Login(props){
   const [hidePassword, setHidePassword] = useState(false)
 
     return(
-
+      <ScrollView keyboardDismissMode='on-drag'
+      keyboardShouldPersistTaps='always'
+      style={{backgroundColor: color.WHITE}}>
       <View style={[mainStyles.container]}>
-        <ScrollView>
+        
         <StatusBar backgroundColor={color.PRIMARYCOLOR} translucent ={true}/>
         <View style={loginStyles.logo}>
           <Image
@@ -45,7 +47,7 @@ export default function Login(props){
           onPress={() => setHidePassword(!hidePassword)}
         />
 
-        <View style={loginStyles.btnMain}>
+        <View style={mainStyles.btnMain}>
           <TouchableOpacity>
             <Text style={[mainStyles.btntxt]}>Iniciar Sesión</Text>
           </TouchableOpacity>
@@ -55,15 +57,14 @@ export default function Login(props){
             <Text style={mainStyles.btntxt}>Registro</Text>
           </TouchableOpacity>
         </View>
-        <View> 
+        <View > 
           <TouchableOpacity onPress={()=> goToScreen(props, 'RecoverPassword')}>
-            <Text style={[mainStyles.txtSecond, 
-              {textDecorationLine: 'underline'}]}>
+            <Text style={[mainStyles.txtSecond,  {textDecorationLine: 'underline'}]}>
               Olvide mi contraseña
             </Text>
           </TouchableOpacity>
         </View>
-      </ScrollView>
     </View>
+    </ScrollView>
   );
 }
