@@ -1,5 +1,5 @@
 import React, { createContext, useReducer } from 'react'
-import { saveUsuario, deleteUsuario } from '../storage/UsuarioAsyncStorage'
+import { saveUsuario, deleteUsuario, getUsuario, getUsuarioFetch } from '../storage/UsuarioAsyncStorage'
 import Snackbar from 'react-native-snackbar'
 
 //estado inicial del contexto
@@ -13,31 +13,44 @@ const initialState = {
     activo: false
 }
 
-//Funcion redutora con dos estados, el estado inicial y el payload
-//El payload recupera la informacion de las acciones, de los tres caso siguientes
+//Funcion reductora con dos estados, el estado inicial y el payload
+//El payload recupera la informacion de las acciones, de los tres casos siguientes
 const usuarioReducer = (state = initialState, payload) => {
     switch (payload.type) {
         //Usuario en sesion
         case 'sign-in':
             console.log('Bienvenido a la app')
             return { ...state, usuario: payload.data, activo: true }
+
         //Usuario al iniciar sesion
         case 'sign':
-            saveUsuario(payload.data).then((msg) => {
-                console.log('Usuario guardado')
+            getUsuarioFetch(payload.data).then((userAuth) => {
+                if(userAuth.auth){
+                    saveUsuario(payload.data).then((msg) => {
+                        console.log('Usuario guardado localmente')
+                    })
+                    Snackbar.show({
+                        text: 'Inicio de sesion exitoso',
+                        duration: Snackbar.LENGTH_LONG
+                    })
+                    return { ...state, usuario: payload.data, activo: true }
+                }else{
+                    Snackbar.show({
+                        text: 'Inicio de sesion fallido',
+                        duration: Snackbar.LENGTH_LONG
+                    })
+                }
             })
-            Snackbar.show({
-                title: 'Inicio de sesion exitoso',
-                duration: Snackbar.LENGTH_LONG
-            })
-            return { ...state, usuario: payload.data, activo: true }
+            return state
+            
+            
         //Usuario sale de sesion    
         case 'sign-out':
             deleteUsuario().then((msg) => {
                 console.log(msg)
             })
             Snackbar.show({
-                title: 'Sesion cerrada',
+                text: 'Sesion cerrada',
                 duration: Snackbar.LENGTH_LONG
             })
 
@@ -61,6 +74,8 @@ function UsuarioProvider(props) {
         </UsuarioContext.Provider>
     )
 }
+    
+  
 
 export { UsuarioContext, UsuarioProvider }
 

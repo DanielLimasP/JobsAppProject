@@ -55,7 +55,7 @@ export default function Login(props) {
 
         <MyButton
           titulo='Iniciar Sesión'
-          onPress={() => iniciarSesion()}
+          onPress={() => iniciarSesion(props)}
         />
         <MyButton
           trasparent={true}
@@ -76,12 +76,15 @@ export default function Login(props) {
   );
 
   function iniciarSesion() {
-    loginAction({
-      type: 'sign', data: {
-        email, password
+   let uauth = loginAction({
+      type: 'sign', 
+      data: {
+        email,
+        password
       }
     })
-    goToScreen('MainScreen')
+    console.log(uauth)
+    //goToScreen('MainScreen')
   }
 
   function goToScreen(routeName) {
