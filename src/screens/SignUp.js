@@ -64,7 +64,6 @@ export default function SignUp(props) {
                 onPress={() => setHidePassword(!hidePassword)} image='lock' bolGone={true} secureTextEntry={hidePassword}
                 />
     
-
             <Text style={signUp.texto}>SEXO:</Text>
             <View style={signUp.container3}>
                 <RadioButton PROP={PROP} />
