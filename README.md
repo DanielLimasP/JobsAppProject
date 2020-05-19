@@ -27,4 +27,9 @@ npx react-native run-ios
 
 # TODO
 
+* User authentication. 
+* 3 Main views. 
+* Taps Menu. 
+* Google Maps API. 
+* Connection with the API Jobs
 * Everything else...
