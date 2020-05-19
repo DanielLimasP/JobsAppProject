@@ -83,13 +83,14 @@ export default function SignUp(props) {
                     checkedColor={color.SECONDARYCOLOR} />
                 <MyButton
                     titulo='Continuar'
-                    onPress={() => goToScreen('Login')}
+                    onPress={() => {
+                        // Aqui hacer un POST a la ruta de signup del usuario
+
+
+                        goToScreen('Login')}
+                    }
                 />
                 <View >
-                    <TouchableOpacity onPress={() => goToScreen(props, 'Login')}>
-                        <Text style={mainStyles.txtSecond}>¿Ya tienes una cuenta?</Text>
-                    </TouchableOpacity>
-                </View>
                 <View style={signUp.containerSocial}>
                     <SocialIcon
                         style={signUp.buttonSocialIcon}
@@ -97,6 +98,11 @@ export default function SignUp(props) {
                         button
                         type='google-plus-official' />
                 </View>
+                    <TouchableOpacity onPress={() => goToScreen(props, 'Login')}>
+                        <Text style={mainStyles.txtSecond}>¿Ya tienes una cuenta?</Text>
+                    </TouchableOpacity>
+                </View>
+                
 
             </View>
         </ScrollView>

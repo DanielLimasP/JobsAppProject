@@ -53,26 +53,4 @@ async function getUsuarioFetch(usuario) {
   }
 }
 
-async function getUsuarioFetch2(usuario){
-  try{
-    let returnJson
-    fetch('https://987211fc.ngrok.io/auth/login',{
-      method: 'POST',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(usuario),
-    })
-    .then((response) => response.json())
-    .then((json) => {
-      returnJson = json
-      console.log(returnJson)
-      return returnJson
-    })
-  }catch(error){
-    console.log(error)
-  }
-}
-
 export {saveUsuario, getUsuario, deleteUsuario, getUsuarioFetch};
