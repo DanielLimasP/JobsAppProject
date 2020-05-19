@@ -8,9 +8,9 @@ export default function MyTextInput(props){
     return (
       <Input
         style={{alignItems: 'center'}}
-        containerStyle={{marginBottom:15}}
-        inputStyle={{ fontSize:18,paddingVertical: 10,
-            paddingHorizontal:10, marginTop:12,
+        containerStyle={{marginBottom:5}}
+        inputStyle={{ fontSize:18,paddingVertical: 2,
+            paddingHorizontal:10, marginTop:2,
             color: color.PRIMARYCOLOR,
             fontFamily:"roboto-regular",}}
         placeholderTextColor={color.LIGHTSECONDARYCOLOR}

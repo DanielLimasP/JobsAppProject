@@ -6,17 +6,21 @@ import {
   StatusBar,
   Image
 }from "react-native";
-import { loginStyles } from '../styles/styles'
+import { mainStyles, loginStyles } from '../styles/styles'
 import MyTextInput from '../components/MyTextInput'
 import color from '../styles/colors'
 
+function goToScreen(props, routeName){
+  props.navigation.navigate(routeName)
+}
+
 //Componente funcional
-export default function Login(){ 
+export default function Login(props){ 
   
   const [hidePassword, setHidePassword] = useState(false)
 
     return(
-      <View style={[loginStyles.container]}>
+      <View style={[mainStyles.container]}>
         <StatusBar backgroundColor={color.PRIMARYCOLOR} translucent ={true}/>
         <View style={loginStyles.logo}>
           <Image source={require('../assets/images/logo.png')} style={{height:200, width: 200}}/>
@@ -26,19 +30,19 @@ export default function Login(){
         bolGone = {true} secureTextEntry= {hidePassword}
         onPress = {()=> setHidePassword(!hidePassword)}/>
         
-        <View style={loginStyles.btnMain}> 
+        <View style={mainStyles.btnMain}> 
           <TouchableOpacity>
-            <Text style={[loginStyles.btntxt]}>Iniciar Sesión</Text>
+            <Text style={[mainStyles.btntxt]}>Iniciar Sesión</Text>
           </TouchableOpacity>
         </View>
-        <View style={loginStyles.btnRegistro}> 
-          <TouchableOpacity>
-            <Text style={loginStyles.btntxt}>Registro</Text>
+        <View style={mainStyles.btnSecond}> 
+          <TouchableOpacity onPress={()=> goToScreen(props, 'SignUp')}>
+            <Text style={mainStyles.btntxt}>Registro</Text>
           </TouchableOpacity>
         </View>
         <View> 
-          <TouchableOpacity>
-            <Text style={[loginStyles.txtTransparent, {textDecorationLine: 'underline'}]}>Olvide mi contraseña</Text>
+          <TouchableOpacity onPress={()=> goToScreen(props, 'RecoverPassword')}>
+            <Text style={[mainStyles.txtSecond, {textDecorationLine: 'underline'}]}>Olvide mi contraseña</Text>
           </TouchableOpacity>
         </View>
       </View>
