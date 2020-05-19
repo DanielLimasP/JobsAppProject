@@ -15,7 +15,7 @@ export default class Login extends Component {
       () => {
         this.goToScreen('Login');
       },
-      2500,
+      4000,
       this,
     );
   }
