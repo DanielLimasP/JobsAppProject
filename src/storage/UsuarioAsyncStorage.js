@@ -37,7 +37,7 @@ async function deleteUsuario() {
 
 async function getUsuarioFetch(usuario) {
   try {
-    const response = await fetch('https://824fe1ae.ngrok.io/auth/login', {
+    const response = await fetch('http://ba61fa8d.ngrok.io/auth/login', {
       method: 'POST',
       headers: {
         Accept: 'application/json',

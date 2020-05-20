@@ -140,7 +140,6 @@ export default function SignUp(props) {
     }
 
     async function signupUserFetch(name, lastname, email, password, phone, birthdate){
-        let text = '{"username":"'+name+' '+lastname+'" ,"name":"'+name+'" , "lastname":"'+lastname+'" , "email":"'+email+'", "password":"'+password+'", "phone":"'+phone+'", "birthdate":"'+birthdate+'"}'
         var newUser = {
             username: name+' '+lastname,
             name: name,
@@ -150,11 +149,9 @@ export default function SignUp(props) {
             phone: phone,
             birthdate: birthdate
         }
-        console.log(newUser)
-        console.log(text)
-        console.log('JSON', (text))
+        //console.log(newUser)
         try {
-            const response = await fetch('https://824fe1ae.ngrok.io/auth/register', {
+            const response = await fetch('http://ba61fa8d.ngrok.io/auth/register', {
               method: 'POST',
               headers: {
                 Accept: 'application/json',
