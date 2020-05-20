@@ -55,7 +55,7 @@ export default function Login(props) {
 
         <MyButton
           titulo='Iniciar Sesión'
-          onPress={() => iniciarSesion(props)}
+          onPress={() => iniciarSesion()}
         />
         <MyButton
           trasparent={true}
