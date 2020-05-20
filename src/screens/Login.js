@@ -76,14 +76,13 @@ export default function Login(props) {
   );
 
   function iniciarSesion() {
-   let uauth = loginAction({
+    loginAction({
       type: 'sign', 
       data: {
         email,
         password
       }
     })
-    console.log(uauth)
     //goToScreen('MainScreen')
   }
 

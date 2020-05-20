@@ -18,7 +18,7 @@ export default class Map extends Component {
           <Text style={styles.textButton}>C</Text>
         </TouchableHighlight>
 
-        <TextInput style={styles.textInput} placeholder="Búsquedad" />
+        <TextInput style={styles.textInput} placeholder="Búsqueda" />
 
         <TouchableHighlight style={styles.btnNot}>
           <Text style={styles.textButton}>N</Text>
