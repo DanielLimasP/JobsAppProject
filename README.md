@@ -27,9 +27,9 @@ npx react-native run-ios
 
 # TODO
 
-* User authentication. 
-* 3 Main views. 
+* User authentication (Login, signup , and local session).          -----------> Done 
+* 3 Main views.                                                     -----------> Soon to start with the Jobs View within the app
 * Taps Menu. 
-* Google Maps API. 
-* Connection with the API Jobs
+* Google Maps API.                                                    
+* Connection with the API Jobs.                                     -----------> Working on it constantly
 * Everything else...
