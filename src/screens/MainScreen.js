@@ -5,6 +5,7 @@ import { mainStyles } from '../styles/styles'
 import color from '../styles/colors'
 import { UsuarioContext } from '../context/UsuarioContext'
 import MyButton from '../components/MyButton'
+import ReactMap from '../components/ReactMap'
 
 export default function MainLogin(props) {
 
@@ -14,6 +15,9 @@ export default function MainLogin(props) {
 
   return (
     <View style={mainStyles.container}>
+      <ReactMap>
+      </ReactMap>
+      
       <StatusBar
         backgroundColor={color.LIGHTPRIMARYCOLOR}
         barStyle='dark-content'
@@ -31,7 +35,6 @@ export default function MainLogin(props) {
         trasparent={true}
         onPress={() => SignOff()}
       />
-
     </View>
 
   );
