@@ -8,6 +8,7 @@ import {
   TouchableOpacity,
 } from 'react-native'
 
+import Geolocation from 'react-native-geolocation-service';
 import MapView, { Marker, ProviderPropType } from 'react-native-maps' 
 import color from '../styles/colors'
 const { width, height } = Dimensions.get('window') 
@@ -41,7 +42,9 @@ class ReactMap extends React.Component {
 
   // OnMapPress Event
   onMapPress(e) {
-    
+      // TODO: Fix geolocation
+    //getPosition()
+        
   }
 
   // View render function
@@ -62,6 +65,21 @@ class ReactMap extends React.Component {
       </View>
     ) 
   }
+}
+
+// TODO Fix this
+async function getPosition(){
+    if (true) {
+        Geolocation.getCurrentPosition(
+            (position) => {
+              console.log(position);
+            },
+            (error) => {
+              console.log(error.code, error.message);
+            },
+            { enableHighAccuracy: true, timeout: 15000, maximumAge: 10000 }
+        );
+    }
 }
 
 ReactMap.propTypes = {

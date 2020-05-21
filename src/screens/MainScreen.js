@@ -17,7 +17,7 @@ export default function MainLogin(props) {
     <View style={mainStyles.container}>
       <ReactMap>
       </ReactMap> 
-      <View style={styles.buttonContainer}>
+      <View style={styles.bottomContainer}>
         <Text
           style={styles.txtVw}>
           Pantalla Principal{'\n'}Usuario: {'\n' + login.usuario.email}
@@ -65,6 +65,11 @@ const styles = StyleSheet.create({
     marginTop: 200,
     fontFamily: 'roboto-regular',
   },
+  bottomContainer:{
+    flex: 1,
+    flexDirection: 'column',
+    justifyContent: 'flex-end',
+  }
 })
 
 function useBackButton(handler) {
