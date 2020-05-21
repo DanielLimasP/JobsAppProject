@@ -1,10 +1,11 @@
 
 import React, { useContext, useEffect } from 'react';
-import { View, Text, StatusBar, Alert, BackHandler } from 'react-native';
+import { View, Text, StyleSheet, Alert, BackHandler } from 'react-native';
 import { mainStyles } from '../styles/styles'
-import color from '../styles/colors'
+
 import { UsuarioContext } from '../context/UsuarioContext'
 import MyButton from '../components/MyButton'
+import ReactMap from '../components/ReactMap'
 
 export default function MainLogin(props) {
 
@@ -14,24 +15,19 @@ export default function MainLogin(props) {
 
   return (
     <View style={mainStyles.container}>
-      <StatusBar
-        backgroundColor={color.LIGHTPRIMARYCOLOR}
-        barStyle='dark-content'
-        translucent={true} />
-      <Text
-        style={{
-          textAlign: 'center',
-          marginTop: 200,
-          fontFamily: 'roboto-regular',
-        }}>
-        Pantalla Principal{'\n'}Usuario: {'\n' + login.usuario.email}
-      </Text>
-      <MyButton
-        titulo='Cerrar sesion'
-        trasparent={true}
-        onPress={() => SignOff()}
-      />
-
+      <ReactMap>
+      </ReactMap> 
+      <View style={styles.bottomContainer}>
+        <Text
+          style={styles.txtVw}>
+          Pantalla Principal{'\n'}Usuario: {'\n' + login.usuario.email}
+        </Text>
+        <MyButton
+          titulo='Cerrar sesion'
+          trasparent={true}
+          onPress={() => SignOff()}
+        />
+      </View>
     </View>
 
   );
@@ -61,8 +57,21 @@ export default function MainLogin(props) {
     )
 
   }
-
 }
+
+const styles = StyleSheet.create({
+  txtVw: {
+    textAlign: 'center',
+    marginTop: 200,
+    fontFamily: 'roboto-regular',
+  },
+  bottomContainer:{
+    flex: 1,
+    flexDirection: 'column',
+    justifyContent: 'flex-end',
+  }
+})
+
 function useBackButton(handler) {
   useEffect(() => {
     BackHandler.addEventListener("hardwareBackPress", handler)
