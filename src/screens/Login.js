@@ -84,7 +84,7 @@ export default function Login(props) {
       }
     })
     console.log(uauth)
-    //goToScreen('MainScreen')
+    goToScreen('MainScreen')
   }
 
   function goToScreen(routeName) {
