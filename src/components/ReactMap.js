@@ -2,13 +2,14 @@ import React from 'react';
 import {
   StyleSheet,
   View,
+  StatusBar,
   Text,
   Dimensions,
   TouchableOpacity,
 } from 'react-native';
 
 import MapView, { Marker, ProviderPropType } from 'react-native-maps';
-
+import color from '../styles/colors'
 const { width, height } = Dimensions.get('window');
 
 const ASPECT_RATIO = width / height;
@@ -24,7 +25,7 @@ function randomColor() {
     .padStart(6, 0)}`;
 }
 
-class DefaultMarkers extends React.Component {
+class ReactMap extends React.Component {
   constructor(props) {
     super(props);
 
@@ -35,54 +36,35 @@ class DefaultMarkers extends React.Component {
         latitudeDelta: LATITUDE_DELTA,
         longitudeDelta: LONGITUDE_DELTA,
       },
-      markers: [],
     };
   }
 
+  // OnMapPress Event
   onMapPress(e) {
-    this.setState({
-      markers: [
-        ...this.state.markers,
-        {
-          coordinate: e.nativeEvent.coordinate,
-          key: id++,
-          color: randomColor(),
-        },
-      ],
-    });
+    
   }
 
+  // View render function
   render() {
     return (
       <View style={styles.container}>
+        <StatusBar
+        backgroundColor={color.LIGHTPRIMARYCOLOR}
+        barStyle='dark-content'
+        translucent={true} />
         <MapView
           provider={this.props.provider}
           style={styles.map}
           initialRegion={this.state.region}
           onPress={e => this.onMapPress(e)}
         >
-          {this.state.markers.map(marker => (
-            <Marker
-              key={marker.key}
-              coordinate={marker.coordinate}
-              pinColor={marker.color}
-            />
-          ))}
         </MapView>
-        <View style={styles.buttonContainer}>
-          <TouchableOpacity
-            onPress={() => this.setState({ markers: [] })}
-            style={styles.bubble}
-          >
-            <Text>Tap to create a marker of random color</Text>
-          </TouchableOpacity>
-        </View>
       </View>
     );
   }
 }
 
-DefaultMarkers.propTypes = {
+ReactMap.propTypes = {
   provider: ProviderPropType,
 };
 
@@ -95,27 +77,10 @@ const styles = StyleSheet.create({
   map: {
     ...StyleSheet.absoluteFillObject,
   },
-  bubble: {
-    backgroundColor: 'rgba(255,255,255,0.7)',
-    paddingHorizontal: 18,
-    paddingVertical: 12,
-    borderRadius: 20,
-  },
   latlng: {
     width: 200,
     alignItems: 'stretch',
   },
-  button: {
-    width: 80,
-    paddingHorizontal: 12,
-    alignItems: 'center',
-    marginHorizontal: 10,
-  },
-  buttonContainer: {
-    flexDirection: 'row',
-    marginVertical: 20,
-    backgroundColor: 'transparent',
-  },
 });
 
-export default DefaultMarkers;
+export default ReactMap;
