@@ -1,28 +1,85 @@
-
-
 //import * as React from 'react';
 //import { Text, View } from 'react-native';
+import color from '../styles/colors'
 import { mainStyles } from '../styles/styles'
 import MyButton from '../components/MyButton'
 import ReactMap from '../components/ReactMap'
 import React, { useContext, useEffect } from 'react';
 import { UsuarioContext } from '../context/UsuarioContext'
+import Ionicons from 'react-native-vector-icons/Ionicons';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { View, Text, StyleSheet, Alert, BackHandler } from 'react-native';
+import { View, StyleSheet, Alert, BackHandler, TouchableOpacity } from 'react-native';
+import { Container, Header, Left, Body, Right, Button, Icon, Title, Text } from 'native-base';
 
 function RecordScreen() {
   return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text>Record</Text>
+    <View style={{ flex: 1 }}>
+      <View style={{ margin:10, marginTop:30, justifyContent: 'space-between', alignItems: 'flex-start', flexDirection: 'row' }}>
+        <TouchableOpacity
+          style={{
+            alignItems:'center',
+            justifyContent:'center',
+            width:42,                
+            height:42,
+            backgroundColor: color.SECONDARYCOLOR,
+            borderRadius:50,
+          }}
+        >
+          <Ionicons name='md-menu' size={32} color='white'/>
+        </TouchableOpacity>
+        <TouchableOpacity            
+          style={{              
+            alignItems:'center',
+            justifyContent:'center',
+            width:42,
+            height:42,
+            backgroundColor: color.SECONDARYCOLOR,
+            borderRadius:50,            
+          }}
+        >
+          <Ionicons name='ios-notifications' size={32} color='white'/>
+        </TouchableOpacity>
+      </View>
+      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+        <Text>Record</Text>
+      </View>
     </View>
   );
 }
 
 function JobsScreen() {
   return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text>Jobs</Text>
+    <View style={{ flex: 1 }}>
+      <View style={{ margin:10, marginTop:30, justifyContent: 'space-between', alignItems: 'flex-start', flexDirection: 'row' }}>
+        <TouchableOpacity
+          style={{
+            alignItems:'center',
+            justifyContent:'center',
+            width:42,                
+            height:42,
+            backgroundColor: color.SECONDARYCOLOR,
+            borderRadius:50,
+          }}
+        >
+          <Ionicons name='md-menu' size={32} color='white'/>
+        </TouchableOpacity>
+        <TouchableOpacity            
+          style={{              
+            alignItems:'center',
+            justifyContent:'center',
+            width:42,
+            height:42,
+            backgroundColor: color.SECONDARYCOLOR,
+            borderRadius:50,            
+          }}
+        >
+          <Ionicons name='ios-notifications' size={32} color='white'/>
+        </TouchableOpacity>
+      </View>
+      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+        <Text>Jobs</Text>
+      </View>
     </View>
   );
 }
@@ -35,8 +92,31 @@ export default function MainLogin(props) {
 
   return (
     <NavigationContainer>
-      <Tab.Navigator>
-        <Tab.Screen name="Record" component={RecordScreen} />
+      <Tab.Navigator
+        screenOptions={({ route }) => ({
+          tabBarIcon: ({ focused, color }) => {
+            let iconName;
+            if (route.name === 'Record') {
+              iconName = 'md-bookmarks';
+              color = focused ? color.PRIMARYCOLOR : '#51aadf';
+            } else if (route.name === 'Map') {
+              iconName = 'md-locate';//md-'somethig' for android logo style
+              color = focused ? color.PRIMARYCOLOR : '#51aadf';
+            } else {
+              iconName = 'ios-briefcase';//ios-'somethig' for ios logo style
+              color = focused ? color.PRIMARYCOLOR : '#51aadf';
+            }
+            // You can return any component that you like here!
+            return <Ionicons name={iconName} size={32} color={color} />;
+          },
+        })}
+        tabBarOptions={{
+          activeTintColor: color.PRIMARYCOLOR,
+          inactiveTintColor: color.SECONDARYCOLOR,
+          showIcon: true
+        }}
+      >
+        <Tab.Screen name="Record" component={RecordScreen}/>
         <Tab.Screen name="Map" component={MapScreen} defa/>
         <Tab.Screen name="Jobs" component={JobsScreen} />
       </Tab.Navigator>
@@ -45,18 +125,44 @@ export default function MainLogin(props) {
 
   function MapScreen() {
     return (
-      <View style={mainStyles.container}>
-        <ReactMap/> 
-        <View style={styles.bottomContainer}>
+      <View style={{ flex: 1 }}>
+        <ReactMap/>
+        <View style={{ margin:10, marginTop:30, justifyContent: 'space-between', alignItems: 'flex-start', flexDirection: 'row' }}>
+          <TouchableOpacity
+            style={{
+              alignItems:'center',
+              justifyContent:'center',
+              width:42,                
+              height:42,
+              backgroundColor: color.SECONDARYCOLOR,
+              borderRadius:50,
+            }}
+          >
+            <Ionicons name='md-menu' size={32} color='white'/>
+          </TouchableOpacity>
+          <TouchableOpacity            
+            style={{              
+              alignItems:'center',
+              justifyContent:'center',
+              width:42,
+              height:42,
+              backgroundColor: color.SECONDARYCOLOR,
+              borderRadius:50,            
+            }}
+          >
+            <Ionicons name='ios-notifications' size={32} color='white'/>
+          </TouchableOpacity>
+        </View>
+        <View style={{ justifyContent: 'center', alignItems: 'center' }}>
           <Text
-            style={styles.txtVw}>
-            Pantalla Principal{'\n'}Usuario: {'\n' + login.usuario.email}
-          </Text>
-          <MyButton
-            titulo='Cerrar sesion'
-            trasparent={true}
-            onPress={() => SignOff()}
-          />
+              style={styles.txtVw}>
+              Pantalla Principal{'\n'}Usuario: {'\n' + login.usuario.email}
+            </Text>
+            <MyButton
+              titulo='Cerrar sesion'
+              trasparent={true}
+              onPress={() => SignOff()}
+            />
         </View>
       </View>
     );
@@ -88,6 +194,17 @@ export default function MainLogin(props) {
   }
 }
 
+function useBackButton(handler) {
+  useEffect(() => {
+    BackHandler.addEventListener("hardwareBackPress", handler)
+
+    return () => {
+      console.log('hardwareBackPress Close')
+      BackHandler.removeEventListener("hardwareBackPress", handler)
+    }
+  }, [handler])
+}
+
 const styles = StyleSheet.create({
   txtVw: {
     textAlign: 'center',
@@ -101,13 +218,3 @@ const styles = StyleSheet.create({
   }
 })
 
-function useBackButton(handler) {
-  useEffect(() => {
-    BackHandler.addEventListener("hardwareBackPress", handler)
-
-    return () => {
-      console.log('hardwareBackPress Close')
-      BackHandler.removeEventListener("hardwareBackPress", handler)
-    }
-  }, [handler])
-}
