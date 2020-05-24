@@ -4,13 +4,15 @@ import color from '../styles/colors'
 import { mainStyles } from '../styles/styles'
 import MyButton from '../components/MyButton'
 import ReactMap from '../components/ReactMap'
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { UsuarioContext } from '../context/UsuarioContext'
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { View, StyleSheet, Alert, BackHandler, TouchableOpacity } from 'react-native';
 import { Container, Header, Left, Body, Right, Button, Icon, Title, Text } from 'native-base';
+import { FlatList } from 'react-native-gesture-handler';
+
 
 function RecordScreen() {
   return (
@@ -48,7 +50,17 @@ function RecordScreen() {
   );
 }
 
+
 function JobsScreen() {
+  
+
+  const [people] = useState([
+    {Job: 'Lavar Trastes', key: '1'},
+    {Job: 'Lavar Sabanas', key: '1'},
+    {Job: 'Lavar Cobijas', key: '1'},
+    {Job: 'Lavar Automovil', key: '1'},
+    {Job: 'Lavar Rescate', key: '1'},
+  ]);
   return (
     <View style={{ flex: 1 }}>
       <View style={{ margin:10, marginTop:30, justifyContent: 'space-between', alignItems: 'flex-start', flexDirection: 'row' }}>
@@ -77,10 +89,18 @@ function JobsScreen() {
           <Ionicons name='ios-notifications' size={32} color='white'/>
         </TouchableOpacity>
       </View>
-      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+     
+      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+      <FlatList 
+          data ={people}
+          renderItem= {({ item }) => (
+            <Text style={styles.item}>{item.Job}</Text>
+          )}
+        />
         <Text>Jobs</Text>
       </View>
     </View>
+
   );
 }
 
@@ -122,6 +142,10 @@ export default function MainLogin(props) {
       </Tab.Navigator>
     </NavigationContainer>
   );
+
+   
+
+
 
   function MapScreen() {
     return (
@@ -215,6 +239,24 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'column',
     justifyContent: 'flex-end',
-  }
+  },
+
+  listcontainer: {
+    flex: 1,
+    
+  },
+  item: {
+    backgroundColor: '#f9c2ff',
+    padding: 50,
+    marginVertical: 8,
+    marginHorizontal: 16,
+    flexDirection: 'row',
+    paddingLeft: 10,
+    paddingTop: 5
+  },
+  title: {
+    fontSize: 32,
+  },
+  
 })
 
