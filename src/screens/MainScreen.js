@@ -4,6 +4,7 @@ import color from '../styles/colors'
 import { mainStyles } from '../styles/styles'
 import MyButton from '../components/MyButton'
 import ReactMap from '../components/ReactMap'
+import JobList from '../components/JobList'
 import React, { useContext, useEffect, useState } from 'react';
 import { UsuarioContext } from '../context/UsuarioContext'
 import Ionicons from 'react-native-vector-icons/Ionicons';
@@ -51,6 +52,7 @@ function RecordScreen() {
 }
 
 
+
 function JobsScreen() {
   
 
@@ -81,7 +83,7 @@ function JobsScreen() {
             alignItems:'center',
             justifyContent:'center',
             width:42,
-            height:42,
+            height:4,
             backgroundColor: color.SECONDARYCOLOR,
             borderRadius:50,            
           }}
@@ -89,6 +91,7 @@ function JobsScreen() {
           <Ionicons name='ios-notifications' size={32} color='white'/>
         </TouchableOpacity>
       </View>
+      <JobList>/></JobList>
      
       <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center'}}>
       <FlatList 
@@ -97,9 +100,12 @@ function JobsScreen() {
             <Text style={styles.item}>{item.Job}</Text>
           )}
         />
-        <Text>Jobs</Text>
+      
+        
       </View>
+     
     </View>
+    
 
   );
 }
