@@ -1,101 +1,120 @@
 import React, { Component } from "react";
-import { FlatList, Text, View, StyleSheet, ActivityIndicator } from "react-native";
+import { FlatList, Text, View, StyleSheet, ActivityIndicator, Image, TouchableOpacity, ToastAndroid } from "react-native";
+import { isThisTypeNode } from "typescript";
 
 
 export default class JobList extends Component {
-    state = {
-        data: []
-    };
-
-    constructor(props) {
-        super(props)
+    
+    constructor() {
+        super()
         this.state = {
-            isLoading: true,
-            dataSource: null,
+            dataSource: [],
+            isLoading: true
         }
     }
 
-    componentWillMount() {
-        return fetch('https://reactnative.dev/movies.json')
+    renderItem = (item) => {
+
+        return (
+            <TouchableOpacity style={styles.row}
+                onPress={() => ToastAndroid.show(item.book_title, ToastAndroid.SHORT)}>
+                <Image style={styles.itemSize}
+                    source={{ uri: item.image }}
+                />
+                <View style={styles.subrow}>
+                    <Text style={styles.title}>
+                        {item.book_title}
+                    </Text>
+                    <Text>
+                        {item.author}
+                    </Text>
+                    <Text>
+                        {item.key}
+                    </Text>
+                </View>
+            </TouchableOpacity>
+        )
+
+
+    }
+
+
+    renderSeparator = () => {
+        return (
+            <View style={styles.separator}>
+
+            </View>
+        )
+    }
+
+    componentDidMount() {
+        const url = 'http://www.json-generator.com/api/json/get/ccLAsEcOSq?indet=1'
+        fetch(url)
             .then((response) => response.json())
             .then((responseJson) => {
                 this.setState({
-                    isLoading: false,
-                    dataSource: responseJson.movies
-                })
+                    dataSource: responseJson.book_array,
+                    isLoading: false
 
+                }
+                    , console.log(Object.keys(responseJson.book_array).length))
             })
-
             .catch((error) => {
                 console.log(error)
-
             });
+
     }
 
     render() {
-        if (this.state.isLoading) {
-            return (
-                <View style={styles.item}>
-                    <ActivityIndicator />
+        return (
+            this.state.isLoading
+                ?
+                <View style={styles.loadingAnimation}>
+                    <ActivityIndicator size="large" color="#330066" animating />
                 </View>
-            )
-        }
-
-        else {
-            let movies = this.state.dataSource.map((val, key) => {
-                return <View key={key} style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-                    <Text styles={styles.item}>{val.id}</Text>
-                    <Text styles={styles.item}>{val.title}</Text>
-                    <Text styles={styles.item}>{val.releaseYear}</Text>
-                    
+                :
+                <View style={styles.container}>
+                    <FlatList
+                        data={this.state.dataSource}
+                        renderItem={({ item, index }) => this.renderItem(item, index)}
+                        keyExtractor={(item, index) => index.toString()}
+                        ItemSeparatorComponent={this.renderSeparator}
+                    />
                 </View>
-
-                
-                
-            });
-
-            
-            
-
-            return (
-                <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-                    <Text>Content Loaded</Text>
-                    {movies}
-                </View>
-
-            );
-        }
+        )
     }
 }
 
 
 const styles = StyleSheet.create({
-    txtVw: {
-        textAlign: 'center',
-        marginTop: 200,
-        fontFamily: 'roboto-regular',
-    },
-    bottomContainer: {
+    container: {
         flex: 1,
-        flexDirection: 'column',
-        justifyContent: 'flex-end',
     },
 
-    listcontainer: {
+    itemSize: {
+        width: 100,
+        height: 100,
+        margin: 5
+    },
+    row: {
         flex: 1,
+        flexDirection: 'row'
+    },
 
-    },
-    item: {
-        backgroundColor: '#f9c2ff',
-        padding: 50,
-        marginVertical: 8,
-        marginHorizontal: 16,
-        flexDirection: 'row',
-        paddingLeft: 10,
-        paddingTop: 5
-    },
+    subrow: { flex: 1, justifyContent: 'center', },
     title: {
-        fontSize: 32,
+        fontSize: 18,
+        color: 'green',
+        marginBottom: 15
     },
-
+    separator: {
+        height: 1,
+        width: '100%',
+        backgroundColor: '#AFDF99'
+    },
+    loadingAnimation: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center'
+    }
 })

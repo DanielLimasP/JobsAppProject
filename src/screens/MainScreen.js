@@ -18,30 +18,30 @@ import { FlatList } from 'react-native-gesture-handler';
 function RecordScreen() {
   return (
     <View style={{ flex: 1 }}>
-      <View style={{ margin:10, marginTop:30, justifyContent: 'space-between', alignItems: 'flex-start', flexDirection: 'row' }}>
+      <View style={{ margin: 10, marginTop: 30, justifyContent: 'space-between', alignItems: 'flex-start', flexDirection: 'row' }}>
         <TouchableOpacity
           style={{
-            alignItems:'center',
-            justifyContent:'center',
-            width:42,                
-            height:42,
+            alignItems: 'center',
+            justifyContent: 'center',
+            width: 42,
+            height: 42,
             backgroundColor: color.SECONDARYCOLOR,
-            borderRadius:50,
+            borderRadius: 50,
           }}
         >
-          <Ionicons name='md-menu' size={32} color='white'/>
+          <Ionicons name='md-menu' size={32} color='white' />
         </TouchableOpacity>
-        <TouchableOpacity            
-          style={{              
-            alignItems:'center',
-            justifyContent:'center',
-            width:42,
-            height:42,
+        <TouchableOpacity
+          style={{
+            alignItems: 'center',
+            justifyContent: 'center',
+            width: 42,
+            height: 42,
             backgroundColor: color.SECONDARYCOLOR,
-            borderRadius:50,            
+            borderRadius: 50,
           }}
         >
-          <Ionicons name='ios-notifications' size={32} color='white'/>
+          <Ionicons name='ios-notifications' size={32} color='white' />
         </TouchableOpacity>
       </View>
       <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
@@ -54,58 +54,41 @@ function RecordScreen() {
 
 
 function JobsScreen() {
-  
 
-  const [people] = useState([
-    {Job: 'Lavar Trastes', key: '1'},
-    {Job: 'Lavar Sabanas', key: '1'},
-    {Job: 'Lavar Cobijas', key: '1'},
-    {Job: 'Lavar Automovil', key: '1'},
-    {Job: 'Lavar Rescate', key: '1'},
-  ]);
+
   return (
     <View style={{ flex: 1 }}>
-      <View style={{ margin:10, marginTop:30, justifyContent: 'space-between', alignItems: 'flex-start', flexDirection: 'row' }}>
+      <View style={{ margin: 10, marginTop: 30, justifyContent: 'space-between', alignItems: 'flex-start', flexDirection: 'row' }}>
         <TouchableOpacity
           style={{
-            alignItems:'center',
-            justifyContent:'center',
-            width:42,                
-            height:42,
+            alignItems: 'center',
+            justifyContent: 'center',
+            width: 42,
+            height: 42,
             backgroundColor: color.SECONDARYCOLOR,
-            borderRadius:50,
+            borderRadius: 50,
           }}
         >
-          <Ionicons name='md-menu' size={32} color='white'/>
+          <Ionicons name='md-menu' size={32} color='white' />
         </TouchableOpacity>
-        <TouchableOpacity            
-          style={{              
-            alignItems:'center',
-            justifyContent:'center',
-            width:42,
-            height:4,
+        <TouchableOpacity
+          style={{
+            alignItems: 'center',
+            justifyContent: 'center',
+            width: 42,
+            height: 4,
             backgroundColor: color.SECONDARYCOLOR,
-            borderRadius:50,            
+            borderRadius: 50,
           }}
         >
-          <Ionicons name='ios-notifications' size={32} color='white'/>
+          <Ionicons name='ios-notifications' size={32} color='white' />
         </TouchableOpacity>
       </View>
       <JobList>/></JobList>
-     
-      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-      <FlatList 
-          data ={people}
-          renderItem= {({ item }) => (
-            <Text style={styles.item}>{item.Job}</Text>
-          )}
-        />
-      
-        
-      </View>
-     
+
+
     </View>
-    
+
 
   );
 }
@@ -142,57 +125,57 @@ export default function MainLogin(props) {
           showIcon: true
         }}
       >
-        <Tab.Screen name="Record" component={RecordScreen}/>
-        <Tab.Screen name="Map" component={MapScreen} defa/>
+        <Tab.Screen name="Record" component={RecordScreen} />
+        <Tab.Screen name="Map" component={MapScreen} defa />
         <Tab.Screen name="Jobs" component={JobsScreen} />
       </Tab.Navigator>
     </NavigationContainer>
   );
 
-   
+
 
 
 
   function MapScreen() {
     return (
       <View style={{ flex: 1 }}>
-        <ReactMap/>
-        <View style={{ margin:10, marginTop:30, justifyContent: 'space-between', alignItems: 'flex-start', flexDirection: 'row' }}>
+        <ReactMap />
+        <View style={{ margin: 10, marginTop: 30, justifyContent: 'space-between', alignItems: 'flex-start', flexDirection: 'row' }}>
           <TouchableOpacity
             style={{
-              alignItems:'center',
-              justifyContent:'center',
-              width:42,                
-              height:42,
+              alignItems: 'center',
+              justifyContent: 'center',
+              width: 42,
+              height: 42,
               backgroundColor: color.SECONDARYCOLOR,
-              borderRadius:50,
+              borderRadius: 50,
             }}
           >
-            <Ionicons name='md-menu' size={32} color='white'/>
+            <Ionicons name='md-menu' size={32} color='white' />
           </TouchableOpacity>
-          <TouchableOpacity            
-            style={{              
-              alignItems:'center',
-              justifyContent:'center',
-              width:42,
-              height:42,
+          <TouchableOpacity
+            style={{
+              alignItems: 'center',
+              justifyContent: 'center',
+              width: 42,
+              height: 42,
               backgroundColor: color.SECONDARYCOLOR,
-              borderRadius:50,            
+              borderRadius: 50,
             }}
           >
-            <Ionicons name='ios-notifications' size={32} color='white'/>
+            <Ionicons name='ios-notifications' size={32} color='white' />
           </TouchableOpacity>
         </View>
         <View style={{ justifyContent: 'center', alignItems: 'center' }}>
           <Text
-              style={styles.txtVw}>
-              Pantalla Principal{'\n'}Usuario: {'\n' + login.usuario.email}
-            </Text>
-            <MyButton
-              titulo='Cerrar sesion'
-              trasparent={true}
-              onPress={() => SignOff()}
-            />
+            style={styles.txtVw}>
+            Pantalla Principal{'\n'}Usuario: {'\n' + login.usuario.email}
+          </Text>
+          <MyButton
+            titulo='Cerrar sesion'
+            trasparent={true}
+            onPress={() => SignOff()}
+          />
         </View>
       </View>
     );
@@ -202,22 +185,22 @@ export default function MainLogin(props) {
     props.navigation.navigate(routeName)
   }
 
-  function SignOff(){
+  function SignOff() {
     Alert.alert(
       "Salir",
       "¿Seguro que desea cerrar sesión?",
       [
         {
-          text: 'Si', onPress:()=>{
+          text: 'Si', onPress: () => {
             loginAction({
               type: 'sign-out',
               data: {}
-          })
-          goToScreen('Login')
+            })
+            goToScreen('Login')
           }
         },
         {
-          text : 'No', onPress: ()=>{}, style:'cancel'
+          text: 'No', onPress: () => { }, style: 'cancel'
         }
       ]
     )
@@ -241,28 +224,14 @@ const styles = StyleSheet.create({
     marginTop: 200,
     fontFamily: 'roboto-regular',
   },
-  bottomContainer:{
+  bottomContainer: {
     flex: 1,
     flexDirection: 'column',
     justifyContent: 'flex-end',
   },
-
-  listcontainer: {
-    flex: 1,
-    
-  },
-  item: {
-    backgroundColor: '#f9c2ff',
-    padding: 50,
-    marginVertical: 8,
-    marginHorizontal: 16,
-    flexDirection: 'row',
-    paddingLeft: 10,
-    paddingTop: 5
-  },
   title: {
     fontSize: 32,
   },
-  
+
 })
 
