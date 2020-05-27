@@ -29,7 +29,6 @@ function randomColor() {
 class ReactMap extends React.Component {
   constructor(props) {
     super(props) 
-
     this.state = {
       region: {
         latitude: LATITUDE,
