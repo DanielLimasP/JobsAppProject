@@ -53,6 +53,7 @@ const mainStyles = StyleSheet.create({
         color: color.LIGHTPRIMARYCOLOR,
         fontSize: 14,
         fontFamily: 'Roboto-regular',
+        textAlign: 'center'
     }
 
 })
@@ -102,14 +103,49 @@ const loginStyles = StyleSheet.create({
         paddingTop: 80,
         marginBottom:30,
         alignItems: 'center',
-    }
+    },
+    action: {
+        flexDirection: 'row',
+        marginTop: 10,
+        borderBottomWidth: 1,
+        borderBottomColor: color.LIGHTSECONDARYCOLOR,
+        paddingBottom: 5,
+        marginLeft: 20,
+        marginRight: 20
+    },
 })
 //Estilos para SignUp Screen
-const signUp = StyleSheet.create({
+const signUpStyles = StyleSheet.create({
+    container: {
+        flex: 1,
+        backgroundColor: color.PRIMARYCOLOR
+    },
+    container2: {
+        alignItems:'center',
+    },   
     container3: {
         flexDirection:'row',
         alignItems:'center',
     },   
+    header: {
+        flex: 1,
+        justifyContent: 'flex-end',
+        paddingHorizontal: 20,
+        paddingBottom: 50,
+        textAlign: 'center'
+    },
+    text_header: {
+        color: color.WHITE,
+        fontWeight: 'bold',
+        fontSize: 30
+    },
+    footer: {
+        flex: Platform.OS === 'ios' ? 3 : 5,
+        backgroundColor: '#fff',
+        borderTopLeftRadius: 30,
+        borderTopRightRadius: 30,
+        paddingVertical: 30
+    }, 
     txtDate:{
         width:90,
         height:45,
@@ -132,7 +168,7 @@ const signUp = StyleSheet.create({
         backgroundColor: color.WHITE
     },
     containerSocial: {
-        paddingTop:30,
+        paddingTop:10,
         alignItems: "center",
         marginBottom: 10
     },
@@ -142,8 +178,19 @@ const signUp = StyleSheet.create({
         height: 60,
         alignItems: 'center',
         borderRadius: 12 
-    }
+    },
+    textInput: {
+        flex: 1,
+        marginTop: Platform.OS === 'ios' ? 0 : -12,
+        paddingLeft: 10,
+        color: color.PRIMARYCOLOR,
+    },
+    errorMsg: {
+        color: '#FF0000',
+        fontSize: 14,
+    },
+
 
 })
 
-export { mainStyles, splashStyles, loginStyles, signUp }
+export { mainStyles, splashStyles, loginStyles, signUpStyles }

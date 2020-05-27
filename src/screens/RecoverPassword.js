@@ -1,42 +1,60 @@
 import React from "react";
-import { 
+import {
   Text,
   View,
   TouchableOpacity,
   StatusBar,
-  ScrollView
-}from "react-native";
-import { mainStyles } from '../styles/styles'
-import MyTextInput from '../components/MyTextInput'
-import ToolBar from '../components/ToolBar'
+  ScrollView,
+  TextInput
+} from "react-native";
+import * as Animatable from 'react-native-animatable';
+import FontAwesome from 'react-native-vector-icons/FontAwesome';
+
+import { mainStyles, signUpStyles, loginStyles } from '../styles/styles'
 import color from '../styles/colors'
+import MyButton from '../components/MyButton'
 
 
-function goToScreen(props, routeName){
-    props.navigation.navigate(routeName)
-}
 
-export default function RecoverPassword(props){ 
-    return(
+const RecoverPassword = ({ navigation }) => {
+  return (
+    <View style={signUpStyles.container}>
+      <StatusBar backgroundColor={color.PRIMARYCOLOR} barStyle="light-content" />
+      <View style={signUpStyles.header}>
+        <Text style={signUpStyles.text_header}>Recuperar contraseña</Text>
+      </View>
+      <Animatable.View
+        animation="fadeInUpBig"
+        style={signUpStyles.footer}
+      >
         <ScrollView
-            keyboardDismissMode='on-drag'
-            keyboardShouldPersistTaps='always'
-            style={{backgroundColor: color.WHITE}}>
-        <StatusBar backgroundColor={color.PRIMARYCOLOR} translucent ={true}/>
-        <ToolBar titulo='Contraseña'
-            onPressLeft={()=> goToScreen(props,'Login')} 
-            iconLeft={require('../assets/images/back.png')}/>
-        <View style={{padding: 30}, mainStyles.container}>
-          <Text style={ mainStyles.titleText}>{'\n'}Recuperar{'\n'}contraseña</Text>
-          <MyTextInput keyboardType='email-address' placeholder='Email' image='user'/>
-          <View style={mainStyles.btnMain}> 
-            <TouchableOpacity onPress={()=> goToScreen(props, 'Login')}>
-              <Text style={[mainStyles.btntxt]}>Recuperar</Text>
-            </TouchableOpacity>
+          keyboardDismissMode='on-drag'
+          keyboardShouldPersistTaps='always'
+          style={{ backgroundColor: color.WHITE }}>
+          <View style={{ padding: 30 }, mainStyles.container}>
+            <Text style={mainStyles.titleText}>{'\n'}</Text>
+            <View style={loginStyles.action}>
+              <FontAwesome
+                name="envelope-o"
+                color={color.PRIMARYCOLOR}
+                size={24}
+              />
+              <TextInput
+                placeholder="Correo"
+                style={signUpStyles.textInput}
+                autoCapitalize="none"
+              />
+            </View>
+            <MyButton
+              titulo='Recuperar'
+              onPress={() => {navigation.goBack()}}
+            />
           </View>
-        </View>
-    </ScrollView>
-
+        </ScrollView>
+      </Animatable.View>
+    </View>
   )
-    
+
 }
+
+export default RecoverPassword;

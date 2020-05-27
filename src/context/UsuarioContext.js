@@ -1,5 +1,7 @@
 import React, { createContext, useReducer } from 'react'
-import { saveUsuario, deleteUsuario, getUsuario, getUsuarioFetch } from '../storage/UsuarioAsyncStorage'
+
+export const AuthContext = React.createContext();
+/*import { saveUsuario, deleteUsuario, getUsuario, getUsuarioFetch } from '../storage/UsuarioAsyncStorage'
 import Snackbar from 'react-native-snackbar'
 
 //estado inicial del contexto
@@ -78,5 +80,5 @@ function UsuarioProvider(props) {
   
 
 export { UsuarioContext, UsuarioProvider }
-
+*/
 
