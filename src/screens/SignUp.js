@@ -24,8 +24,6 @@ import { mainStyles, signUp } from '../styles/styles';
 import MyButton from '../components/MyButton'
 import Snackbar from 'react-native-snackbar'
 
-
-
 const PROP = [
     {
         key: 'hombre',
@@ -151,7 +149,7 @@ export default function SignUp(props) {
         }
         //console.log(newUser)
         try {
-            const response = await fetch('http://e44e675a.ngrok.io/auth/register', {
+            const response = await fetch('http://9d1fedb2.ngrok.io/auth/register', {
               method: 'POST',
               headers: {
                 Accept: 'application/json',

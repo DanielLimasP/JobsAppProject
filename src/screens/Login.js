@@ -55,7 +55,7 @@ export default function Login(props) {
 
         <MyButton
           titulo='Iniciar Sesión'
-          onPress={() => iniciarSesion()}
+          onPress={() => fetchLogIn()}
         />
         <MyButton
           trasparent={true}
@@ -75,6 +75,12 @@ export default function Login(props) {
     </ScrollView>
   );
 
+  async function fetchLogIn(){
+    iniciarSesion()
+    await new Promise(resolve => setTimeout(resolve, 2000)); // wait 2 sec
+    goToScreen('Splash')
+  }
+
   function iniciarSesion() {
     loginAction({
       type: 'sign', 
@@ -83,7 +89,6 @@ export default function Login(props) {
         password
       }
     })
-    //goToScreen('MainScreen')
   }
 
   function goToScreen(routeName) {
