@@ -371,12 +371,14 @@ const styles = StyleSheet.create({
   jobTitle: {
     marginBottom: 5,
     marginLeft: 15,
+    color: '#2C2C57',
     marginTop: 10
   },
   jobTitleAlt: {
     marginBottom: 5,
+    color: '#2C2C57',
     marginLeft: 15,
-    marginTop: 10
+    marginTop: 1
   }
 })
 

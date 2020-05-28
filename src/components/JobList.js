@@ -14,19 +14,22 @@ export default class JobList extends Component {
     }
 
     renderItem = (item) => {
-
+        
         return (
             <TouchableOpacity style={styles.row}
-                onPress={() => ToastAndroid.show(item.book_title, ToastAndroid.SHORT)}>
+                onPress={() => ToastAndroid.show(item.name, ToastAndroid.SHORT)}>
                 <Image style={styles.itemSize}
-                    source={{ uri: item.image }}
+                    source={{ uri: item.description_img }}
                 />
                 <View style={styles.subrow}>
                     <Text style={styles.title}>
-                        {item.book_title}
+                        {item.name}
                     </Text>
-                    <Text style={styles.author}>
-                        {item.author}
+                    <Text style={styles.amount}>
+                        {item.amountPayment}
+                    </Text>
+                    <Text style={styles.description}>
+                        {item.description}
                     </Text>
 
                 </View>
@@ -40,22 +43,41 @@ export default class JobList extends Component {
 
 
     componentDidMount() {
-        const url = 'http://www.json-generator.com/api/json/get/ccLAsEcOSq?indet=1'
-        fetch(url)
-            .then((response) => response.json())
+
+        const data = {
+            perpage: 50,
+            page: 1
+        };
+
+        fetch('https://9d1fedb2.ngrok.io/jobs/jobsbypage', {
+            method: 'POST', // or 'PUT'
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data),
+        })
+            .then(response => response.json())
             .then((responseJson) => {
                 this.setState({
-                    dataSource: responseJson.book_array,
+                    dataSource: responseJson.jobs,
                     isLoading: false
 
                 }
-                    , console.log(Object.keys(responseJson.book_array).length))
+                    , console.log(Object.keys(responseJson.jobs).length))
+            })
+            .then(data => {
+                
             })
             .catch((error) => {
-                console.log(error)
+                
             });
 
+
     }
+
+
+
+
 
     render() {
         return (
@@ -114,13 +136,17 @@ const styles = StyleSheet.create({
 
     subrow: { flex: 1, justifyContent: 'center', },
     title: {
-        fontSize: 10,
+        fontSize: 12,
         color: '#2C2C57',
         marginBottom: 15
     },
-    author: {
-        fontSize: 6
+    amount: {
+        fontSize: 8
     },
+    description: {
+        fontSize: 8
+    },
+
 
     loadingAnimation: {
         flex: 1,

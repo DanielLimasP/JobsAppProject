@@ -209,7 +209,7 @@ const styles = StyleSheet.create({
     },
 
     button: {
-        flex: 1.1,
+        flex: 1,
         flexDirection: 'row',
         borderRadius: 10,
         backgroundColor: '#51aadf',
