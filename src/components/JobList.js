@@ -14,7 +14,7 @@ export default class JobList extends Component {
     }
 
     renderItem = (item) => {
-        
+
         return (
             <TouchableOpacity style={styles.row}
                 onPress={() => ToastAndroid.show(item.name, ToastAndroid.SHORT)}>
@@ -26,7 +26,7 @@ export default class JobList extends Component {
                         {item.name}
                     </Text>
                     <Text style={styles.amount}>
-                        {item.amountPayment}
+                        {item.amountPayment + "$"}
                     </Text>
                     <Text style={styles.description}>
                         {item.description}
@@ -35,12 +35,7 @@ export default class JobList extends Component {
                 </View>
             </TouchableOpacity>
         )
-
-
     }
-
-
-
 
     componentDidMount() {
 
@@ -66,18 +61,12 @@ export default class JobList extends Component {
                     , console.log(Object.keys(responseJson.jobs).length))
             })
             .then(data => {
-                
+
             })
             .catch((error) => {
-                
+
             });
-
-
     }
-
-
-
-
 
     render() {
         return (
@@ -99,10 +88,9 @@ export default class JobList extends Component {
     }
 }
 
-
 const styles = StyleSheet.create({
     container: {
-        flex: 1,
+        flex: .9,
 
     },
 
@@ -129,11 +117,7 @@ const styles = StyleSheet.create({
         shadowOpacity: 0.25,
         shadowRadius: 3.84,
         elevation: 5,
-
-
-
     },
-
     subrow: { flex: 1, justifyContent: 'center', },
     title: {
         fontSize: 12,
@@ -141,13 +125,12 @@ const styles = StyleSheet.create({
         marginBottom: 15
     },
     amount: {
-        fontSize: 8
+        fontSize: 8,
+        fontWeight: 'bold'
     },
     description: {
         fontSize: 8
     },
-
-
     loadingAnimation: {
         flex: 1,
         justifyContent: 'center',
