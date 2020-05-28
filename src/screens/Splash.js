@@ -44,7 +44,7 @@ export default function Splash(props) {
     if (response == null) {
       setTimeout(() => {
         goToScreen('Login')
-      }, 4000)
+      }, 2000)
       return
     }
 

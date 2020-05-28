@@ -66,7 +66,7 @@ export default class JobList extends Component {
                 }
             ],
             "amountPayment": 1500,
-            "description_img": require("/home/dino/reactjobs/JobsAppProject/src/assets/images/back.png"),
+            "description_img": require(""),
             "category": "Jardineria",
             "point": {
                 "lat": 28.609116,
@@ -74,7 +74,7 @@ export default class JobList extends Component {
             },
             "maxWorkers": 2,
             "done": false
-        }
+        }/*
         JSON.stringify(dataObj)
         fetch('https://9d1fedb2.ngrok.io/jobs/addjob', {
             method: 'POST', // or 'PUT'
@@ -92,6 +92,7 @@ export default class JobList extends Component {
                 console.error('Error:', error);
                 console.log(dataObj)
             });
+            */
     }
 
 

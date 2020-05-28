@@ -2,6 +2,8 @@ import React, { createContext, useReducer } from 'react'
 import { saveUsuario, deleteUsuario, getUsuario, getUsuarioFetch } from '../storage/UsuarioAsyncStorage'
 import Snackbar from 'react-native-snackbar'
 
+export const AuthContext = React.createContext();
+
 //estado inicial del contexto
 const initialState = {
     user: {
@@ -21,7 +23,6 @@ const usuarioReducer = (state = initialState, payload) => {
         case 'sign-in':
             console.log('Bienvenido a la app')
             return { ...state, usuario: payload.data, activo: true }
-
         //Usuario al iniciar sesion
         case 'sign':
             getUsuarioFetch(payload.data).then((userAuth) => {
@@ -42,8 +43,6 @@ const usuarioReducer = (state = initialState, payload) => {
                 }
             })
             return state
-            
-            
         //Usuario sale de sesion    
         case 'sign-out':
             deleteUsuario().then((msg) => {
@@ -53,9 +52,7 @@ const usuarioReducer = (state = initialState, payload) => {
                 text: 'Sesion cerrada',
                 duration: Snackbar.LENGTH_LONG
             })
-
             return { ...state, usuario: payload.data, activo: false }
-
         default:
             return state
     }

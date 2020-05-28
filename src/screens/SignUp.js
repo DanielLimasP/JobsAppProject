@@ -24,8 +24,6 @@ import { mainStyles, signUp } from '../styles/styles';
 import MyButton from '../components/MyButton'
 import Snackbar from 'react-native-snackbar'
 
-
-
 const PROP = [
     {
         key: 'hombre',
