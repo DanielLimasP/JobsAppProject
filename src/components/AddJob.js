@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { FlatList, Text, TextInput, Button, View, StyleSheet, ActivityIndicator, Image, TouchableOpacity, ToastAndroid } from "react-native";
+import { createParameter } from "typescript";
 
 
 
@@ -62,57 +63,44 @@ export default class JobList extends Component {
         collection.desc = this.state.desc,
             collection.pago = this.state.pago,
             collection.ubi = this.state.ubi
+        var name = collection.desc.toString()
+        var description = collection.desc.toString()
+        var address = collection.ubi.toString()
+        var amountPayment = parseInt(collection.pago, 10);
+
         console.warn(collection)
         var dataObj = {
-            "name": "Trabajo de Dino",
-            "publishDate": "Thu Apr 02 2020 11:25:22",
+            "name": name,
             "startedDate": "Thu Apr 02 2020 11:25:22",
-            "finishedDate": "Thu Apr 02 2020 11:25:22",
             "dueDate": "Thu Apr 02 2020 11:25:22",
-            "isActive": true,
-            "workers": [
-                {
-                    "_id": "5ebc42702b942e51701d1f9c",
-                    "rate": 5
-                }
-            ],
-            "description": "Lorem ipsum",
-            "employer": [
-                {
-                    "_id": "5ebb514e4a8b0424d57c3651",
-                    "rate": 5
-                }
-            ],
-            "amountPayment": 1500,
-            "description_img": require("../assets/images/logo.png"),
-            "category": "Jardineria",
-            "point": {
-                "lat": 28.609116,
-                "lng": -106.0640969
-            },
-            "maxWorkers": 2,
-            "done": false
+            "description": description,
+            "_id": "5e73d5a01e944f14dcda02b2",
+            "amountPayment": amountPayment,
+            "description_img": " ",
+            "category": "Cleaning",
+            "address": address,
+            "maxWorkers": 2
         }
-        /*
-        JSON.stringify(dataObj)
-        fetch('https://9d1fedb2.ngrok.io/jobs/addjob', {
+
+        fetch('http://9d1fedb2.ngrok.io/jobs/addjob', {
             method: 'POST', // or 'PUT'
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: dataObj,
+            body: JSON.stringify(dataObj),
 
         })
             .then(response => response.json())
             .then(dataObj => {
-                console.log('Success:', dataObj);
+
             })
             .catch((error) => {
-                console.error('Error:', error);
-                console.log(dataObj)
+
             });
 
-            */
+
+
+
 
     }
 
@@ -139,7 +127,6 @@ export default class JobList extends Component {
                         placeholder={"Descripción"}
                         placeholderTextColor="f3f3f3"
                         onChangeText={(text) => this.updateValue(text, 'desc')}
-                        onFocus={() => this.onFocus()}
                         style={styles.textInput}
 
                     />
