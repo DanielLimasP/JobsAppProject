@@ -149,7 +149,7 @@ export default function SignUp(props) {
         }
         //console.log(newUser)
         try {
-            const response = await fetch('http://9d1fedb2.ngrok.io/auth/register', {
+            const response = await fetch('https://9d1fedb2.ngrok.io/auth/register', {
               method: 'POST',
               headers: {
                 Accept: 'application/json',
