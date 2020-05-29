@@ -47,7 +47,10 @@ async function getUsuarioFetch(usuario) {
     });
     let jsonRes = await response.json();
     console.log(jsonRes)
-      return  jsonRes
+    saveUsuario(jsonRes).then((msg) => {
+      console.log('Usuario guardado localmente')
+    })
+    return  jsonRes
   } catch (error) {
     return null
   }

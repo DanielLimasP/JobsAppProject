@@ -4,6 +4,8 @@ import color from '../styles/colors'
 import { mainStyles } from '../styles/styles'
 import MyButton from '../components/MyButton'
 import ReactMap from '../components/ReactMap'
+import JobList from '../components/JobList';
+import AddJob from '../components/AddJob'
 import React, { useContext, useEffect } from 'react';
 import { UsuarioContext } from '../context/UsuarioContext'
 import Ionicons from 'react-native-vector-icons/Ionicons';
@@ -12,7 +14,8 @@ import { createDrawerNavigator, DrawerContentScrollView, DrawerItem } from '@rea
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { View, StyleSheet, Alert, BackHandler, TouchableOpacity, Image } from 'react-native';
 import { Container, Header, Left, Body, Right, Button, Title, Text } from 'native-base';
-import { useTheme, Avatar, Caption, Paragraph, TouchableRipple, Switch, Drawer } from 'react-native-paper';
+import { useTheme, Avatar, Caption, Paragraph, TouchableRipple, Switch, Drawer, List } from 'react-native-paper';
+
 
 function RecordScreen({ navigation }) {
   return (
@@ -25,8 +28,9 @@ function RecordScreen({ navigation }) {
           <Ionicons name='ios-notifications' size={32} color='white'/>
         </TouchableOpacity>
       </View>
-      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-        <Text>Record</Text>
+      <View style={{ flex: 1 }}>
+        <Text style={styles.jobTitleAlt}>Trabajos Publicados</Text>
+        <JobList/>
       </View>
     </View>
   );
@@ -43,9 +47,11 @@ function JobsScreen({ navigation }) {
           <Ionicons name='ios-notifications' size={32} color='white'/>
         </TouchableOpacity>
       </View>
-      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-        <Text>Jobs</Text>
+      <View style={{ flex: 1 }}>
+        <Text style={styles.jobTitle}>Agregar Trabajo</Text>
+        <AddJob/>
       </View>
+
     </View>
   );
 }
@@ -358,5 +364,17 @@ const styles = StyleSheet.create({
     paddingVertical: 12,
     paddingHorizontal: 16,
   },
+  jobTitle: {
+    marginBottom: 5,
+    marginLeft: 15,
+    color: '#2C2C57',
+    marginTop: 10
+  },
+  jobTitleAlt: {
+    marginBottom: 5,
+    color: '#2C2C57',
+    marginLeft: 15,
+    marginTop: 1
+  }
 })
 
