@@ -1,42 +1,46 @@
 import React from "react";
-import { 
+import {
   Text,
   View,
-  TouchableOpacity,
   StatusBar,
   ScrollView
-}from "react-native";
-import { mainStyles } from '../styles/styles'
+} from "react-native";
+import { mainStyles, signUpStyles } from '../styles/styles'
+import * as Animatable from 'react-native-animatable';
 import MyTextInput from '../components/MyTextInput'
-import ToolBar from '../components/ToolBar'
 import color from '../styles/colors'
+import MyButton from '../components/MyButton'
 
 
-function goToScreen(props, routeName){
-    props.navigation.navigate(routeName)
+function goToScreen(props, routeName) {
+  props.navigation.navigate(routeName)
 }
 
-export default function RecoverPassword(props){ 
-    return(
+export default function RecoverPassword(props) {
+  return (
+    <View style={signUpStyles.container}>
+      <StatusBar backgroundColor={color.PRIMARYCOLOR} barStyle="light-content" />
+      <View style={signUpStyles.header}>
+        <Text style={signUpStyles.text_header}>Recuperar contraseña</Text>
+      </View>
+      <Animatable.View
+        animation="fadeInUpBig"
+        style={signUpStyles.footer}
+      >
         <ScrollView
-            keyboardDismissMode='on-drag'
-            keyboardShouldPersistTaps='always'
-            style={{backgroundColor: color.WHITE}}>
-        <StatusBar backgroundColor={color.PRIMARYCOLOR} translucent ={true}/>
-        <ToolBar titulo='Contraseña'
-            onPressLeft={()=> goToScreen(props,'Login')} 
-            iconLeft={require('../assets/images/back.png')}/>
-        <View style={{padding: 30}, mainStyles.container}>
-          <Text style={ mainStyles.titleText}>{'\n'}Recuperar{'\n'}contraseña</Text>
-          <MyTextInput keyboardType='email-address' placeholder='Email' image='user'/>
-          <View style={mainStyles.btnMain}> 
-            <TouchableOpacity onPress={()=> goToScreen(props, 'Login')}>
-              <Text style={[mainStyles.btntxt]}>Recuperar</Text>
-            </TouchableOpacity>
+          keyboardDismissMode='on-drag'
+          keyboardShouldPersistTaps='always'
+          style={{ backgroundColor: color.WHITE }}>
+          <View style={{ padding: 30 }, mainStyles.container}>
+            <Text style={mainStyles.titleText}>{'\n'}</Text>
+            <MyTextInput keyboardType='email-address' placeholder='Email' image='user' />
+            <MyButton
+              titulo='Recuperar'
+              onPress={() => goToScreen(props, 'Login')}
+            />
           </View>
-        </View>
-    </ScrollView>
-
+        </ScrollView>
+      </Animatable.View>
+    </View>
   )
-    
 }

@@ -5,13 +5,15 @@ import {
   TouchableOpacity,
   StatusBar,
   Image,
+  Alert,
   ScrollView
 } from "react-native";
-import { mainStyles, loginStyles } from '../styles/styles'
-import MyTextInput from '../components/MyTextInput'
-import MyButton from '../components/MyButton'
-import color from '../styles/colors'
-import { UsuarioContext } from '../context/UsuarioContext'
+
+import { mainStyles, loginStyles } from '../styles/styles';
+import MyButton from '../components/MyButton';
+import MyTextInput from '../components/MyTextInput';
+import color from '../styles/colors';
+import { UsuarioContext } from '../context/UsuarioContext';
 
 //Componente funcional
 export default function Login(props) {
@@ -27,7 +29,6 @@ export default function Login(props) {
       keyboardShouldPersistTaps='always'
       style={{ backgroundColor: color.WHITE }}>
       <View style={[mainStyles.container]}>
-
         <StatusBar backgroundColor={color.PRIMARYCOLOR} translucent={true} />
         <View style={loginStyles.logo}>
           <Image
@@ -47,7 +48,7 @@ export default function Login(props) {
           placeholder="Contraseña"
           image="lock"
           bolGone={true}
-          secureTextEntry={hidePassword}
+          secureTextEntry={!hidePassword}
           onPress={() => setHidePassword(!hidePassword)}
           value={password}
           onChangeText={(password) => setPassword(password)}
@@ -65,7 +66,7 @@ export default function Login(props) {
         />
 
         <View >
-          <TouchableOpacity onPress={() => goToScreen(props, 'RecoverPassword')}>
+          <TouchableOpacity onPress={() => goToScreen('RecoverPassword')}>
             <Text style={[mainStyles.txtSecond, { textDecorationLine: 'underline' }]}>
               Olvide mi contraseña
             </Text>
@@ -75,7 +76,13 @@ export default function Login(props) {
     </ScrollView>
   );
 
-  async function fetchLogIn(){
+  async function fetchLogIn() {
+    if (email.length == 0 || password.length == 0) {
+      Alert.alert('Wrong Input!', 'Username or password field cannot be empty.', [
+        { text: 'Okay' }
+      ]);
+      return;
+    }
     iniciarSesion()
     await new Promise(resolve => setTimeout(resolve, 2000)); // wait 2 sec
     goToScreen('Splash')
@@ -83,12 +90,13 @@ export default function Login(props) {
 
   function iniciarSesion() {
     loginAction({
-      type: 'sign', 
+      type: 'sign',
       data: {
         email,
         password
       }
     })
+    
   }
 
   function goToScreen(routeName) {

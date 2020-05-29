@@ -54,7 +54,7 @@ const Tab = createBottomTabNavigator();
 const Drawer2 = createDrawerNavigator();
 
 export default function MainLogin(props) {
-  useBackButton(SignOff)
+  //useBackButton(SignOff)
   //const JobsScreenMenu = ({ navigation }) => <Screen navigation={ navigation } name="Jobs" />
   const [login, loginAction] = useContext(UsuarioContext)
   
