@@ -7,6 +7,7 @@ export const AuthContext = React.createContext();
 //estado inicial del contexto
 const initialState = {
     user: {
+        id: '',
         nombre: '',
         apellido: '',
         email: '',
@@ -27,9 +28,9 @@ const usuarioReducer = (state = initialState, payload) => {
         case 'sign':
             getUsuarioFetch(payload.data).then((userAuth) => {
                 if(userAuth.auth){
-                    saveUsuario(payload.data).then((msg) => {
+                    /*saveUsuario(payload.data).then((msg) => {
                         console.log('Usuario guardado localmente')
-                    })
+                    })*/
                     Snackbar.show({
                         text: 'Inicio de sesion exitoso',
                         duration: Snackbar.LENGTH_LONG

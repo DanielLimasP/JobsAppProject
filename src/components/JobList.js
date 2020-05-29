@@ -26,7 +26,7 @@ export default class JobList extends Component {
                         {item.name}
                     </Text>
                     <Text style={styles.amount}>
-                        {item.amountPayment + "$"}
+                        { "$" + item.amountPayment }
                     </Text>
                     <Text style={styles.description}>
                         {item.description}
@@ -90,8 +90,7 @@ export default class JobList extends Component {
 
 const styles = StyleSheet.create({
     container: {
-        flex: .9,
-
+        flex: 1,
     },
 
     itemSize: {
@@ -101,17 +100,15 @@ const styles = StyleSheet.create({
         borderRadius: 150 / 2,
         overflow: "hidden",
         borderWidth: 3,
-
     },
     row: {
         flex: 1,
         flexDirection: 'row',
         borderRadius: 10,
         backgroundColor: 'white',
-        marginTop: 3,
         marginBottom: 20,
-        marginLeft: 55,
-        marginRight: 55,
+        marginLeft: 20,
+        marginRight: 20,
         shadowColor: "#000",
         shadowOffset: { width: 0, height: 2, },
         shadowOpacity: 0.25,

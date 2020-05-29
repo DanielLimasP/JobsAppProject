@@ -28,8 +28,9 @@ function RecordScreen({ navigation }) {
           <Ionicons name='ios-notifications' size={32} color='white'/>
         </TouchableOpacity>
       </View>
-      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-        <Text>Record</Text>
+      <View style={{ flex: 1 }}>
+        <Text style={styles.jobTitleAlt}>Trabajos Publicados</Text>
+        <JobList/>
       </View>
     </View>
   );
@@ -46,14 +47,9 @@ function JobsScreen({ navigation }) {
           <Ionicons name='ios-notifications' size={32} color='white'/>
         </TouchableOpacity>
       </View>
-      
       <View style={{ flex: 1 }}>
-      
         <Text style={styles.jobTitle}>Agregar Trabajo</Text>
-        <AddJob
-        ></AddJob>
-         <Text style={styles.jobTitleAlt}>Lista de Trabajos</Text>
-        <JobList></JobList>
+        <AddJob/>
       </View>
 
     </View>

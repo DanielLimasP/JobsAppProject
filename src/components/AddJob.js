@@ -1,10 +1,8 @@
 import React, { Component } from "react";
+import color from '../styles/colors'
+import Ionicons from 'react-native-vector-icons/Ionicons';
 import { FlatList, Text, TextInput, Button, View, StyleSheet, ActivityIndicator, Image, TouchableOpacity, ToastAndroid } from "react-native";
 import { createParameter } from "typescript";
-
-
-
-
 
 export default class JobList extends Component {
 
@@ -22,7 +20,6 @@ export default class JobList extends Component {
             flex: 1,
             flexDirection: 'row',
             backgroundColor: '#f2f2f2',
-
             marginTop: 3,
             marginBottom: 3,
             marginLeft: 55,
@@ -67,7 +64,6 @@ export default class JobList extends Component {
         var description = collection.desc.toString()
         var address = collection.ubi.toString()
         var amountPayment = parseInt(collection.pago, 10);
-
         console.warn(collection)
         var dataObj = {
             "name": name,
@@ -81,81 +77,55 @@ export default class JobList extends Component {
             "address": address,
             "maxWorkers": 2
         }
-
         fetch('http://9d1fedb2.ngrok.io/jobs/addjob', {
             method: 'POST', // or 'PUT'
             headers: {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify(dataObj),
-
         })
-            .then(response => response.json())
-            .then(dataObj => {
-
-            })
-            .catch((error) => {
-
-            });
-
-
-
-
-
+        .then(response => response.json())
+        .then(dataObj => {})
+        .catch((error) => {});
     }
 
-
-
-
-
-
-
     render() {
-
         return (
-
-
             this.state.isLoading
-                ?
-                <View style={styles.loadingAnimation}>
-
-                </View>
-                :
-                <View style={styles.container}>
-                    <TextInput
-                        ref='desc'
-                        placeholder={"Descripción"}
-                        placeholderTextColor="f3f3f3"
-                        onChangeText={(text) => this.updateValue(text, 'desc')}
-                        style={styles.textInput}
-
-                    />
-                    <TextInput style={styles.textInput}
-                        placeholder="Pago $$$"
-                        placeholderTextColor="f3f3f3"
-                        numeric
-                        keyboardType={'numeric'}
-                        onChangeText={(text) => this.updateValue(text, 'pago')}
-                        value={this.state.pago}
-                    />
-                    <TextInput style={styles.textInput}
-                        placeholder="Ubicación"
-                        placeholderTextColor="f3f3f3"
-                        onChangeText={(text) => this.updateValue(text, 'ubi')}
-                    />
-
-
+            ?
+            <View style={styles.loadingAnimation}/>
+            :
+            <View style={styles.container}>
+                <TextInput
+                    ref='desc'
+                    placeholder={"Descripción"}
+                    placeholderTextColor="f3f3f3"
+                    onChangeText={(text) => this.updateValue(text, 'desc')}
+                    style={styles.textInput}
+                />
+                <TextInput style={styles.textInput}
+                    placeholder="Pago $$$"
+                    placeholderTextColor="f3f3f3"
+                    numeric
+                    keyboardType={'numeric'}
+                    onChangeText={(text) => this.updateValue(text, 'pago')}
+                    value={this.state.pago}
+                />
+                <TextInput style={styles.textInput}
+                    placeholder="Ubicación"
+                    placeholderTextColor="f3f3f3"
+                    onChangeText={(text) => this.updateValue(text, 'ubi')}
+                />
+                <View style={ {alignItems:'center'} }>
                     <TouchableOpacity
                         style={styles.button}
                         onPress={() => this.submit()}
-
                     >
                         <Text style={styles.textButton}>Publicar</Text>
-
+                        <Ionicons name='md-checkmark-circle-outline' size={32} color='white'/>
                     </TouchableOpacity>
-
-
                 </View>
+            </View>
         )
     }
 }
@@ -163,8 +133,7 @@ export default class JobList extends Component {
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1.5,
-
+        flex: 1,
     },
 
     itemSize: {
@@ -193,14 +162,12 @@ const styles = StyleSheet.create({
     },
 
     textInput: {
-        flex: 1,
         flexDirection: 'row',
         backgroundColor: '#f2f2f2',
-
         marginTop: 3,
         marginBottom: 3,
-        marginLeft: 55,
-        marginRight: 55,
+        marginLeft: 20,
+        marginRight: 20,
         shadowColor: "#CCCCCC",
         shadowOffset: { width: 0, height: 2, },
         shadowOpacity: 0.99,
@@ -209,22 +176,17 @@ const styles = StyleSheet.create({
     },
 
     button: {
-        flex: 1,
-        flexDirection: 'row',
-        borderRadius: 10,
-        backgroundColor: '#51aadf',
-        marginTop: 3,
-        marginBottom: 20,
-        marginLeft: 55,
-        marginRight: 55,
-
-
-
-
+        margin: 5,
+        width: 250,
+        height: 70,
+        backgroundColor: color.SECONDARYCOLOR,
+        flexDirection: 'column',
+        alignItems:'center',
+        justifyContent:'center',
+        borderRadius:30,
     },
 
     textButton: {
-        flex: 1,
         textAlignVertical: "center",
         textAlign: 'center', // <-- the magic
         fontSize: 15,
