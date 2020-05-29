@@ -78,8 +78,8 @@ export default function Login(props) {
 
   async function fetchLogIn() {
     if (email.length == 0 || password.length == 0) {
-      Alert.alert('Wrong Input!', 'Username or password field cannot be empty.', [
-        { text: 'Okay' }
+      Alert.alert('No se puede iniciar', 'Por favor rellene los campos requeridos.', [
+        { text: 'Ok' }
       ]);
       return;
     }
