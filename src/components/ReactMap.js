@@ -39,21 +39,80 @@ class ReactMap extends React.Component {
         latitudeDelta: LATITUDE_DELTA,
         longitudeDelta: LONGITUDE_DELTA,
       },
-      markers: []
+      markers: [],
+      dataSource: []
     } 
   }
 
-  // OnMapPress Event
+  // OnMapPress
   onMapPress(e) {
-    this.setState({
-      markers: [
-        ...this.state.markers,
-        {
-          coordinate: e.nativeEvent.coordinate,
-          key: id++,
-        },
-      ],
-    });
+    
+  }
+
+  componentDidMount(){
+    fetchJobs().then((fetchedJobs) => {
+        var coordArray = [
+          {
+            latitude: 28.637521,
+            longitude: -106.066234
+          },
+          {
+            //28.630926, -106.068015
+            latitude: 28.630926,
+            longitude: -106.068015
+          },
+          {
+            //28.630493, -106.074452
+            latitude: 28.630493,
+            longitude: -106.074452
+          },
+          {
+            //28.630493, -106.074452
+            latitude: 28.630493,
+            longitude: -106.074452
+          },
+          {
+            //28.634423, -106.075005
+            latitude: 28.634423,
+            longitude: -106.075005
+          },
+          {
+            //28.636080, -106.075633
+            latitude: 28.636080,
+            longitude: -106.075633
+          },
+          {
+            //28.637135, -106.070365
+            latitude: 28.637135,
+            longitude: -106.070365
+          },
+          {
+            //28.637521, -106.066234
+            latitude: 28.637521,
+            longitude: -106.066234
+          },
+          {
+            //28.632996, -106.069099
+            latitude: 28.632996,
+            longitude: -106.069099
+          }
+        ]
+        for(let i = 0; i < 9; i++){
+          //console.log(fetchedJobs)
+          console.log(fetchedJobs.jobs[i].name)
+          this.setState({
+            markers: [
+              ...this.state.markers,
+              {
+                coordinate: coordArray[i],
+                key: id++,
+                //color: randomColor()
+              },
+            ],
+          });
+        }
+      }).catch(e => {console.log(e)})
+
   }
 
   // View render function
@@ -68,22 +127,22 @@ class ReactMap extends React.Component {
           provider={this.props.provider}
           style={styles.map}
           initialRegion={this.state.region}
-          onPress={e => this.onMapPress(e)}
+          onPress = {e =>{this.onMapPress(e)}}
         >
 
           {this.state.markers.map(marker => (
             <Marker
               key={marker.key}
               coordinate={marker.coordinate}
-              title = "Test title"
-              description = "Test description"
+              title = "Job title"
+              description = "Job description"
               image = {require('../assets/images/jobmarker.png')}
             >
             <Callout tooltip>
               <View>
                 <View style = {styles.bubble}> 
-                  <Text style = {styles.name}>Trabajo de la Joyeria</Text>
-                  <Text>Ven a trabajar para mi...</Text>
+                  <Text style = {styles.name}>Trabajo de la joyeria</Text>
+                  <Text>Ven a trabajar a la joyeria</Text>
                   <Image
                     style = {styles.image}
                     source = {require('../assets/images/logo.png')}
@@ -101,7 +160,7 @@ class ReactMap extends React.Component {
               latitude: LATITUDE,
               longitude: LONGITUDE
             }}
-            image = {require('../assets/images/marker.png')}
+            image = {require('../assets/images/bluemarker.png')}
             title = "Ubicación"
           >
           </Marker>
@@ -127,6 +186,20 @@ async function getPosition(){
             { enableHighAccuracy: true, timeout: 15000, maximumAge: 10000 }
         );
     }
+}
+
+async function fetchJobs(){
+  try {
+    const response = await fetch('http://9d1fedb2.ngrok.io/jobs/fetchalljobs', {
+      method: 'GET'
+    });
+    
+    let jsonRes = await response.json();
+    //console.log(jsonRes)
+      return jsonRes
+  } catch (error) {
+    return null
+  }
 }
 
 ReactMap.propTypes = {
