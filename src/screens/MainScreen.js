@@ -152,9 +152,9 @@ export default function MainLogin(props) {
                         />
                         <DrawerItem 
                             icon={({color, size}) => (
-                              <Ionicons name='ios-notifications' size={size} color={color}/>
+                              <Ionicons name='ios-clock' size={size} color={color}/>
                             )}
-                            label="Notifications"
+                            label="Pending Jobs"
                             onPress={() => {props.navigation.navigate('Map')}}
                         />
                         <DrawerItem 
