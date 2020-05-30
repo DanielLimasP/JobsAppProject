@@ -6,16 +6,19 @@ import {
   Text,
   Dimensions,
   TouchableOpacity,
+  Image
 } from 'react-native'
 
 import Geolocation from 'react-native-geolocation-service';
-import MapView, { Marker, ProviderPropType } from 'react-native-maps' 
+import MapView, { Marker, ProviderPropType, Callout } from 'react-native-maps' 
 import color from '../styles/colors'
 const { width, height } = Dimensions.get('window') 
 
 const ASPECT_RATIO = width / height 
 const LATITUDE = 28.632996
 const LONGITUDE = -106.069099
+//const latJOB = 28.5760
+//const lonJOB = 	-106.9772
 const LATITUDE_DELTA = .005
 const LONGITUDE_DELTA = LATITUDE_DELTA * ASPECT_RATIO 
 let id = 0 
@@ -36,13 +39,14 @@ class ReactMap extends React.Component {
         latitudeDelta: LATITUDE_DELTA,
         longitudeDelta: LONGITUDE_DELTA,
       },
+      markers: []
     } 
   }
 
   // OnMapPress Event
   onMapPress(e) {
       // TODO: Fix geolocation
-    //getPosition()
+      //getPosition()
         
   }
 
@@ -60,6 +64,33 @@ class ReactMap extends React.Component {
           initialRegion={this.state.region}
           onPress={e => this.onMapPress(e)}
         >
+
+          <Marker
+            coordinate = {{
+              latitude: LATITUDE,
+              longitude: LONGITUDE
+            }}
+            image = {require('../assets/images/bluemarker.png')}
+            title = "Test title"
+            description = "Test description"
+          >
+
+            <Callout tooltip>
+              <View>
+                <View style = {styles.bubble}> 
+                  <Text style = {styles.name}>Trabajo de la Joyeria</Text>
+                  <Text>Ven a trabajar para mi...</Text>
+                  <Image
+                    style = {styles.image}
+                    source = {require('../assets/images/logo.png')}
+                  />
+                </View>
+                <View style = {styles.arrowBorder}/>
+                <View style = {styles.arrow}/>
+              </View>
+            </Callout>
+          </Marker>
+
         </MapView>
       </View>
     ) 
@@ -88,8 +119,8 @@ ReactMap.propTypes = {
 const styles = StyleSheet.create({
   container: {
     ...StyleSheet.absoluteFillObject,
-    justifyContent: 'flex-end',
-    alignItems: 'center',
+    flexDirection: 'column',
+    alignSelf: 'flex-start',
   },
   map: {
     ...StyleSheet.absoluteFillObject,
@@ -98,6 +129,43 @@ const styles = StyleSheet.create({
     width: 200,
     alignItems: 'stretch',
   },
-}) 
+  bubble: {
+    flexDirection: 'column',
+    alignSelf: 'flex-start',
+    backgroundColor: '#fff',
+    borderRadius: 10,
+    borderWidth: 0.5,
+    padding: 15,
+    width: 150
+  },
+  arrow: {
+    backgroundColor: 'transparent',
+    borderColor: 'transparent',
+    borderTopColor: 'transparent',
+    borderWidth: 16,
+    alignSelf: 'center',
+    marginTop: -32
+  },
+  arrowBorder: {
+    backgroundColor: 'transparent',
+    borderColor: 'transparent',
+    borderTopColor: '#000',
+    borderWidth: 16,
+    alignSelf: 'center',
+    marginTop: -0.5,
+    marginBottom: -20
+  },
+  name: {
+    fontSize: 16,
+    marginBottom: 5,  
+    fontFamily: "roboto-regular"
+  }, 
+  image: {
+    width: 80,
+    height: 60,
+    marginTop: 20,
+    alignSelf: 'center'
+  }
+})  
 
 export default ReactMap
