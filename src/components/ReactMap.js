@@ -51,6 +51,7 @@ class ReactMap extends React.Component {
 
   componentDidMount(){
     fetchJobs().then((fetchedJobs) => {
+      
         var coordArray = [
           {
             latitude: 28.637521,
@@ -93,10 +94,11 @@ class ReactMap extends React.Component {
           },
           {
             //28.632996, -106.069099
-            latitude: 28.632996,
-            longitude: -106.069099
+            latitude: 28.632914,
+            longitude: -106.069500
           }
         ]
+
         for(let i = 0; i < 9; i++){
           //console.log(fetchedJobs)
           console.log(fetchedJobs.jobs[i].name)
@@ -106,9 +108,19 @@ class ReactMap extends React.Component {
               {
                 coordinate: coordArray[i],
                 key: id++,
+                title: fetchedJobs.jobs[i].name,
+                description: fetchedJobs.jobs[i].description
                 //color: randomColor()
               },
             ],
+            dataSource: [
+              ...this.state.dataSource,
+              {
+                name: fetchedJobs.jobs[i].name,
+                description: fetchedJobs.jobs[i].description,
+                payment: fetchedJobs.jobs[i].amountPayment
+              }
+            ]
           });
         }
       }).catch(e => {console.log(e)})
@@ -130,28 +142,15 @@ class ReactMap extends React.Component {
           onPress = {e =>{this.onMapPress(e)}}
         >
 
-          {this.state.markers.map(marker => (
+          {this.state.markers.map((marker, dataSource) => (
             <Marker
               key={marker.key}
               coordinate={marker.coordinate}
-              title = "Job title"
-              description = "Job description"
+              title = {marker.title}
+              description = {marker.description}
               image = {require('../assets/images/jobmarker.png')}
             >
-            <Callout tooltip>
-              <View>
-                <View style = {styles.bubble}> 
-                  <Text style = {styles.name}>Trabajo de la joyeria</Text>
-                  <Text>Ven a trabajar a la joyeria</Text>
-                  <Image
-                    style = {styles.image}
-                    source = {require('../assets/images/logo.png')}
-                  />
-                </View>
-                <View style = {styles.arrowBorder}/>
-                <View style = {styles.arrow}/>
-              </View>
-            </Callout>
+            
           </Marker>
           ))}   
 
