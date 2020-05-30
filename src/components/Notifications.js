@@ -58,15 +58,29 @@ export default class App extends React.Component{
       )
     } else {
       let notify = this.state.dataSource.map((val, key) => {
+        var currentDate = new Date();
+        var startDate = new Date(val.startDate)
+        var publishDate = new Date(val.publishDate)
+        startDate = startDate.getFullYear() + '-' + (startDate.getMonth() + 1) + '-' + startDate.getDate()
+        var auxPublishDate = publishDate.getFullYear() + '-' + (publishDate.getMonth() + 1) + '-' + publishDate.getDate()
+        currentDate = currentDate.getFullYear() + '-' + (currentDate.getMonth() + 1) + '-' + currentDate.getDate()
+        
         return <View key={key}>
-            <Text>{val.name} {val.publishDate} {val.category}</Text>
-            <Image 
-            source={{uri: 'https://www.interstellarrift.com/wiki/images/8/81/Hammer.png'}}/>
+          {
+          currentDate != auxPublishDate? <Text>El trabajo {val.name} ha sido publicado</Text> : 
+          val.isActive == 'false'? <Text>El trabajo {val.name} se canceló</Text> :
+          startDate == currentDate? <Text>El trabajo {val.name} se canceló</Text>: null
+        }
+            <Text>Categoría: {val.category}</Text>
+            <Image style={styles.tinyLogo}
+            source={{uri: val.description_img}}/>
             </View>
       });
       return(
         <View>
+          <ScrollView>
           {notify}
+          </ScrollView>
         </View>
       );
     }
