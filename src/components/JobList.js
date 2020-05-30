@@ -14,7 +14,6 @@ export default class JobList extends Component {
     }
 
     renderItem = (item) => {
-
         return (
             <TouchableOpacity style={styles.row}
                 onPress={() => ToastAndroid.show(item.name, ToastAndroid.SHORT)}>
@@ -38,12 +37,12 @@ export default class JobList extends Component {
     }
 
     componentDidMount() {
-
+        const userID = this.props.id
         const data = {
             perpage: 50,
-            page: 1
+            page: 1,
+            id: userID
         };
-
         fetch('https://9d1fedb2.ngrok.io/jobs/jobsbypage', {
             method: 'POST', // or 'PUT'
             headers: {
@@ -51,39 +50,32 @@ export default class JobList extends Component {
             },
             body: JSON.stringify(data),
         })
-            .then(response => response.json())
-            .then((responseJson) => {
-                this.setState({
-                    dataSource: responseJson.jobs,
-                    isLoading: false
-
-                }
-                    , console.log(Object.keys(responseJson.jobs).length))
-            })
-            .then(data => {
-
-            })
-            .catch((error) => {
-
-            });
+        .then(response => response.json())
+        .then((responseJson) => {
+            this.setState({
+                dataSource: responseJson.jobs,
+                isLoading: false
+            }, console.log(Object.keys(responseJson.jobs).length))
+        })
+        .then(data => {})
+        .catch((error) => {});
     }
 
     render() {
         return (
             this.state.isLoading
-                ?
-                <View style={styles.loadingAnimation}>
-                    <ActivityIndicator size="large" color="#330066" animating />
-                </View>
-                :
-                <View style={styles.container}>
-                    <FlatList
-                        data={this.state.dataSource}
-                        renderItem={({ item, index }) => this.renderItem(item, index)}
-                        keyExtractor={(item, index) => index.toString()}
-
-                    />
-                </View>
+            ?
+            <View style={styles.loadingAnimation}>
+                <ActivityIndicator size="large" color="#330066" animating />
+            </View>
+            :
+            <View style={styles.container}>
+                <FlatList
+                    data={this.state.dataSource}
+                    renderItem={({ item, index }) => this.renderItem(item, index)}
+                    keyExtractor={(item, index) => index.toString()}
+                />
+            </View>
         )
     }
 }

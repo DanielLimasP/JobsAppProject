@@ -6,7 +6,6 @@ import MyButton from '../components/MyButton'
 import ReactMap from '../components/ReactMap'
 import JobList from '../components/JobList';
 import AddJob from '../components/AddJob'
-import MyPicker from '../components/MyPicker'
 import React, { useContext, useEffect, useState } from 'react';
 import { UsuarioContext } from '../context/UsuarioContext'
 import Ionicons from 'react-native-vector-icons/Ionicons';
@@ -18,6 +17,9 @@ import { Container, Header, Left, Body, Right, Button, Title, Text, DatePicker }
 import { useTheme, Avatar, Caption, Paragraph, TouchableRipple, Switch, Drawer, RadioButton, List } from 'react-native-paper';
 
 function RecordScreen({ navigation }) {
+  const [login, loginAction] = useContext(UsuarioContext)
+  const id = login.usuario.id 
+
   return (
     <View style={{ flex: 1 }}>
       <View style={{ justifyContent: 'space-between', alignItems: 'flex-start', flexDirection: 'row' }}>
@@ -30,7 +32,7 @@ function RecordScreen({ navigation }) {
       </View>
       <View style={{ flex: 1 }}>
         <Text style={styles.jobTitleAlt}>Trabajos Publicados</Text>
-        <JobList/>
+        <JobList id={id}/>
       </View>
     </View>
   );
@@ -51,7 +53,6 @@ function JobsScreen({ navigation }) {
         </TouchableOpacity>
       </View>
       <View style={{ flex: 1 }}>
-        <Text style={stylesJobs.jobTitle, {marginLeft: 10}}>Agregar Trabajo</Text>
         <AddJob id={id}/>
       </View>
     </View>

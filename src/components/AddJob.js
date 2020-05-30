@@ -138,6 +138,7 @@ export default class AddJob extends Component {
             <View style={styles.loadingAnimation}/>
             :
             <View style={styles.container}>
+                <Text style={styles.jobTitle, {marginLeft: 10}}>Agregar Trabajo</Text>
                 <ScrollView>
                     <TextInput style={styles.textInput}
                         placeholder={"Titulo"}
