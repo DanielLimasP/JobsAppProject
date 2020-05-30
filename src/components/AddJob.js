@@ -1,11 +1,12 @@
-import React, { Component } from "react";
+import React, { Component, useContext } from "react";
+import { UsuarioContext } from '../context/UsuarioContext'
 import color from '../styles/colors'
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { FlatList, ScrollView, Text, TextInput, Button, View, StyleSheet, ActivityIndicator, Image, TouchableOpacity, ToastAndroid } from "react-native";
 import { createParameter } from "typescript";
 import { DatePicker, Picker } from "native-base";
 
-export default class JobList extends Component {
+export default class AddJob extends Component {
 
     constructor() {
         super()
@@ -86,6 +87,7 @@ export default class JobList extends Component {
     }
 
     submit() {
+        const userID = this.props.id
         let collection = {}
         collection.name = this.state.name,
         collection.cat = this.state.cat,
@@ -103,13 +105,13 @@ export default class JobList extends Component {
         var address = collection.ubi.toString()
         var amountPayment = parseFloat(collection.pago, 10);
         var maxWorkers = parseInt(collection.maxWorkers, 10);
-        var id = "5ec5d1bc3109410d3c46aead"
+        console.log("This is user ID: " + userID)
         var dataObj = {
             "name": name,
             "startedDate": startedDate,
             "dueDate": dueDate,
             "description": description,
-            "_id": id,
+            "_id": userID,
             "amountPayment": amountPayment,
             "description_img": " ",
             "category": category,

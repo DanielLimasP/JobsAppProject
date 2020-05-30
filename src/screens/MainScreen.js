@@ -6,16 +6,16 @@ import MyButton from '../components/MyButton'
 import ReactMap from '../components/ReactMap'
 import JobList from '../components/JobList';
 import AddJob from '../components/AddJob'
-import React, { useContext, useEffect } from 'react';
+import MyPicker from '../components/MyPicker'
+import React, { useContext, useEffect, useState } from 'react';
 import { UsuarioContext } from '../context/UsuarioContext'
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { NavigationContainer, BaseRouter } from '@react-navigation/native';
 import { createDrawerNavigator, DrawerContentScrollView, DrawerItem } from '@react-navigation/drawer';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { View, StyleSheet, Alert, BackHandler, TouchableOpacity, Image } from 'react-native';
-import { Container, Header, Left, Body, Right, Button, Title, Text } from 'native-base';
-import { useTheme, Avatar, Caption, Paragraph, TouchableRipple, Switch, Drawer, List } from 'react-native-paper';
-
+import { View, StyleSheet, Alert, BackHandler, TouchableOpacity, ScrollView, TextInput, Picker, Image } from 'react-native';
+import { Container, Header, Left, Body, Right, Button, Title, Text, DatePicker } from 'native-base';
+import { useTheme, Avatar, Caption, Paragraph, TouchableRipple, Switch, Drawer, RadioButton, List } from 'react-native-paper';
 
 function RecordScreen({ navigation }) {
   return (
@@ -37,6 +37,9 @@ function RecordScreen({ navigation }) {
 }
 
 function JobsScreen({ navigation }) {
+  const [login, loginAction] = useContext(UsuarioContext)
+  const id = login.usuario.id 
+
   return (
     <View style={{ flex: 1 }}>
       <View style={{ justifyContent: 'space-between', alignItems: 'flex-start', flexDirection: 'row' }}>
@@ -48,10 +51,9 @@ function JobsScreen({ navigation }) {
         </TouchableOpacity>
       </View>
       <View style={{ flex: 1 }}>
-        <Text style={styles.jobTitle}>Agregar Trabajo</Text>
-        <AddJob/>
+        <Text style={stylesJobs.jobTitle, {marginLeft: 10}}>Agregar Trabajo</Text>
+        <AddJob id={id}/>
       </View>
-
     </View>
   );
 }
@@ -63,7 +65,7 @@ export default function MainLogin(props) {
   //useBackButton(SignOff)
   //const JobsScreenMenu = ({ navigation }) => <Screen navigation={ navigation } name="Jobs" />
   const [login, loginAction] = useContext(UsuarioContext)
-  
+
   const TabsScreen = () => (
     <Tab.Navigator initialRouteName="Map"
         screenOptions={({ route }) => ({
@@ -377,4 +379,3 @@ const styles = StyleSheet.create({
     marginTop: 1
   }
 })
-

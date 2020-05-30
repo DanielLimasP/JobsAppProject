@@ -1,4 +1,4 @@
-import React, { createContext, useReducer } from 'react'
+import React, { createContext, useReducer, useEffect } from 'react'
 import { saveUsuario, deleteUsuario, getUsuario, getUsuarioFetch } from '../storage/UsuarioAsyncStorage'
 import Snackbar from 'react-native-snackbar'
 
@@ -73,8 +73,6 @@ function UsuarioProvider(props) {
     )
 }
     
-  
-
 export { UsuarioContext, UsuarioProvider }
 
 
