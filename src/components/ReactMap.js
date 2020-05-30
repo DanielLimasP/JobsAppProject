@@ -45,9 +45,15 @@ class ReactMap extends React.Component {
 
   // OnMapPress Event
   onMapPress(e) {
-      // TODO: Fix geolocation
-      //getPosition()
-        
+    this.setState({
+      markers: [
+        ...this.state.markers,
+        {
+          coordinate: e.nativeEvent.coordinate,
+          key: id++,
+        },
+      ],
+    });
   }
 
   // View render function
@@ -65,16 +71,14 @@ class ReactMap extends React.Component {
           onPress={e => this.onMapPress(e)}
         >
 
-          <Marker
-            coordinate = {{
-              latitude: LATITUDE,
-              longitude: LONGITUDE
-            }}
-            image = {require('../assets/images/bluemarker.png')}
-            title = "Test title"
-            description = "Test description"
-          >
-
+          {this.state.markers.map(marker => (
+            <Marker
+              key={marker.key}
+              coordinate={marker.coordinate}
+              title = "Test title"
+              description = "Test description"
+              image = {require('../assets/images/jobmarker.png')}
+            >
             <Callout tooltip>
               <View>
                 <View style = {styles.bubble}> 
@@ -90,6 +94,19 @@ class ReactMap extends React.Component {
               </View>
             </Callout>
           </Marker>
+          ))}   
+
+          <Marker
+            coordinate = {{
+              latitude: LATITUDE,
+              longitude: LONGITUDE
+            }}
+            image = {require('../assets/images/marker.png')}
+            title = "Ubicación"
+          >
+          </Marker>
+
+            
 
         </MapView>
       </View>
