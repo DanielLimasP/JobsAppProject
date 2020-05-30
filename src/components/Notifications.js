@@ -61,7 +61,7 @@ export default class App extends React.Component{
         return <View key={key}>
             <Text>{val.name} {val.publishDate} {val.category}</Text>
             <Image 
-            source={require(val.description_img)}/>
+            source={{uri: 'https://www.interstellarrift.com/wiki/images/8/81/Hammer.png'}}/>
             </View>
       });
       return(
@@ -72,6 +72,20 @@ export default class App extends React.Component{
     }
   }
 }
+
+const styles = StyleSheet.create({
+  container: {
+    paddingTop: 50,
+  },
+  tinyLogo: {
+    width: 50,
+    height: 50,
+  },
+  logo: {
+    width: 66,
+    height: 58,
+  },
+});
 /*
 const App = () => {
   const [notiStatus, setNotiStatus] = useState('Ultimas Notificaciones');
