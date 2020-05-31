@@ -8,15 +8,14 @@ import {
   TouchableOpacity,
   Image
 } from 'react-native'
-
 import Geolocation from 'react-native-geolocation-service';
 import MapView, { Marker, ProviderPropType, Callout } from 'react-native-maps' 
 import color from '../styles/colors'
-const { width, height } = Dimensions.get('window') 
 
-const ASPECT_RATIO = width / height 
+const { width, height } = Dimensions.get('window')
 const LATITUDE = 28.632996
 const LONGITUDE = -106.069099
+const ASPECT_RATIO = width / height 
 //const latJOB = 28.5760
 //const lonJOB = 	-106.9772
 const LATITUDE_DELTA = .005
@@ -33,14 +32,13 @@ class ReactMap extends React.Component {
   constructor(props) {
     super(props) 
     this.state = {
-      region: {
-        latitude: LATITUDE,
-        longitude: LONGITUDE,
-        latitudeDelta: LATITUDE_DELTA,
-        longitudeDelta: LONGITUDE_DELTA,
-      },
+      latitude: LATITUDE,
+      longitude: LONGITUDE,
+      latitudeDelta: LATITUDE_DELTA,
+      longitudeDelta: LONGITUDE_DELTA,
       markers: [],
-      dataSource: []
+      dataSource: [],
+      error: null
     } 
   }
 
@@ -50,8 +48,17 @@ class ReactMap extends React.Component {
   }
 
   componentDidMount(){
+    Geolocation.getCurrentPosition(position => {
+      console.log(position)
+      this.setState({
+        latitude: position.coords.latitude,
+        longitude: position.coords.longitude,
+        error: null
+      })
+    }, error => this.setState({ error: error.message }),
+    { enableHighAccuracy: true, timeout: 20000, maximumAge: 2000 })
+
     fetchJobs().then((fetchedJobs) => {
-      
       // This is what bad code looks like...
         var coordArray = [
           {
@@ -260,7 +267,12 @@ class ReactMap extends React.Component {
         <MapView
           provider={this.props.provider}
           style={styles.map}
-          initialRegion={this.state.region}
+          initialRegion={{
+            latitude: this.state.latitude,
+            longitude: this.state.longitude,
+            latitudeDelta: 0.015,
+            longitudeDelta: 0.0121
+          }}
           onPress = {e =>{this.onMapPress(e)}}
         >
 
@@ -292,8 +304,8 @@ class ReactMap extends React.Component {
 
           <Marker
             coordinate = {{
-              latitude: LATITUDE,
-              longitude: LONGITUDE
+              latitude: this.state.latitude,
+              longitude: this.state.longitude
             }}
             image = {require('../assets/images/bluemarker.png')}
             title = "Ubicación"
