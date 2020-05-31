@@ -267,7 +267,7 @@ class ReactMap extends React.Component {
         <MapView
           provider={this.props.provider}
           style={styles.map}
-          initialRegion={{
+          region={{
             latitude: this.state.latitude,
             longitude: this.state.longitude,
             latitudeDelta: 0.015,
