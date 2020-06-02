@@ -43,7 +43,7 @@ export default class JobList extends Component {
             page: 1,
             id: userID
         };
-        fetch('https://9d1fedb2.ngrok.io/jobs/jobsbypage', {
+        fetch('https://8bd0887c64ba.ngrok.io/jobs/jobsbypage', {
             method: 'POST', // or 'PUT'
             headers: {
                 'Content-Type': 'application/json',

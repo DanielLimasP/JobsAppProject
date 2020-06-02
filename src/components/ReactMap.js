@@ -337,12 +337,12 @@ async function getPosition(){
 
 async function fetchJobs(){
   try {
-    const response = await fetch('http://9d1fedb2.ngrok.io/jobs/fetchalljobs', {
+    const response = await fetch('https://8bd0887c64ba.ngrok.io/jobs/fetchalljobs', {
       method: 'GET'
     });
     
     let jsonRes = await response.json();
-    //console.log(jsonRes)
+      //console.log(jsonRes)
       return jsonRes
   } catch (error) {
     return null

@@ -119,7 +119,7 @@ export default class AddJob extends Component {
             "maxWorkers": maxWorkers
         }
         console.log(dataObj)
-        fetch('http://9d1fedb2.ngrok.io/jobs/addjob', {
+        fetch('https://8bd0887c64ba.ngrok.io/jobs/addjob', {
             method: 'POST', // or 'PUT'
             headers: {
                 'Content-Type': 'application/json',
